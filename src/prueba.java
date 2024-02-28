@@ -106,16 +106,34 @@ public class prueba {
     }
 
     private static void MoverPieza(String[][] tablero, int fila, int columna, int fila2, int columna2, String pieza2) {
-        // String[][] tablero = CrearTablero();
         String pieza = tablero[fila][columna];
-        System.out.println("Esto tiene " + pieza);
-        if (pieza == (BGB + pieza2) || pieza == (BGN + pieza2)) {
-            System.out.println("Movimiento válido");
+        if (pieza.equals(BGB + pieza2)) {
+            tablero[fila][columna] = BGB + "   ";
+            String pieza3 = tablero[fila2][columna2];
+            if (pieza3.equals(BGN + "   ")) {
+                tablero[fila2][columna2] = BGN + pieza2;
+            } else if (pieza3.equals(BGB + "   ")) {
+                tablero[fila2][columna2] = BGB + pieza2;
+
+            } else {
+                System.out.println("No se puede mover a esa posición");
+            }
+
+        } else if (pieza.equals(BGN + pieza2)) {
+            tablero[fila][columna] = BGN + "   ";
+            String pieza3 = tablero[fila2][columna2];
+            if (pieza3.equals(BGN + "   ")) {
+                tablero[fila2][columna2] = BGN + pieza2;
+            } else if (pieza3.equals(BGB + "   ")) {
+                tablero[fila2][columna2] = BGB + pieza2;
+
+            } else {
+                System.out.println("No se puede mover a esa posición");
+            }
         } else {
-            System.out.println("Movimiento inválido");
+            System.out.println("No hay ninguna pieza en esa posición");
         }
-        tablero[fila][columna] = "   ";
-        tablero[fila2][columna2] = pieza;
+
         ImprimirTablero(tablero);
     }
 
