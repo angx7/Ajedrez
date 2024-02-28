@@ -1,4 +1,16 @@
 public class App {
+    static String PeonN = " P ";
+    static String PeonB = " P ";
+    static String TorreN = " T ";
+    static String TorreB = " T ";
+    static String CaballoN = " C ";
+    static String CaballoB = " C ";
+    static String AlfilN = " A ";
+    static String AlfilB = " A ";
+    static String DamaN = " D ";
+    static String DamaB = " D ";
+    static String ReyN = " R ";
+    static String ReyB = " R "; 
     public static void main(String[] args) {
         CrearTablero();
         ImprimirTablero(CrearTablero());
@@ -18,18 +30,6 @@ public class App {
 
     private static String[][] CrearTablero() {
         String[][] tablero = new String[8][8];
-        String PeonN = " P ";
-        String PeonB = " P ";
-        String TorreN = " T ";
-        String TorreB = " T ";
-        String CaballoN = " C ";
-        String CaballoB = " C ";
-        String AlfilN = " A ";
-        String AlfilB = " A ";
-        String DamaN = " D ";
-        String DamaB = " D ";
-        String ReyN = " R ";
-        String ReyB = " R "; 
 
         tablero[0][0] = "\u001B[47m" + "\u001B[35m" + TorreN;
         tablero[0][1] = "\u001B[40m" + "\u001B[35m" + CaballoN;
