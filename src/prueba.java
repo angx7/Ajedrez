@@ -15,6 +15,8 @@ public class prueba {
     static String DamaB = " D ";
     static String ReyN = " R ";
     static String ReyB = " R ";
+    static String BGB = "\u001B[47m" + "\u001B[35m";
+    static String BGN = "\u001B[40m" + "\u001B[35m";
 
     public static void main(String[] args) {
         CrearTablero();
@@ -24,7 +26,7 @@ public class prueba {
 
     private static void Menu() {
         boolean finale = false;
-        do {
+    do {
             System.out.println("Seleccione una opción: ");
             System.out.println("Turno de blancas");
             System.out.println("1. Mover una pieza");
@@ -52,6 +54,7 @@ public class prueba {
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
+                    ImprimirTablero(CrearTablero());
                     ElegirPieza(CrearTablero());
                     break;
                 case 2:
@@ -104,77 +107,77 @@ public class prueba {
     private static String[][] CrearTablero() {
         String[][] tablero = new String[8][8];
 
-        tablero[0][0] = "\u001B[47m" + "\u001B[35m" + TorreN;
-        tablero[0][1] = "\u001B[40m" + "\u001B[35m" + CaballoN;
-        tablero[0][2] = "\u001B[47m" + "\u001B[35m" + AlfilN;
-        tablero[0][3] = "\u001B[40m" + "\u001B[35m" + DamaN;
-        tablero[0][4] = "\u001B[47m" + "\u001B[35m" + ReyN;
-        tablero[0][5] = "\u001B[40m" + "\u001B[35m" + AlfilN;
-        tablero[0][6] = "\u001B[47m" + "\u001B[35m" + CaballoN;
-        tablero[0][7] = "\u001B[40m" + "\u001B[35m" + TorreN;
+        tablero[0][0] = BGB + TorreN;
+        tablero[0][1] = BGN + CaballoN;
+        tablero[0][2] = BGB + AlfilN;
+        tablero[0][3] = BGN + DamaN;
+        tablero[0][4] = BGB + ReyN;
+        tablero[0][5] = BGN + AlfilN;
+        tablero[0][6] = BGB + CaballoN;
+        tablero[0][7] = BGN + TorreN;
 
-        tablero[1][0] = "\u001B[40m" + "\u001B[35m" + PeonN;
-        tablero[1][1] = "\u001B[47m" + "\u001B[35m" + PeonN;
-        tablero[1][2] = "\u001B[40m" + "\u001B[35m" + PeonN;
-        tablero[1][3] = "\u001B[47m" + "\u001B[35m" + PeonN;
-        tablero[1][4] = "\u001B[40m" + "\u001B[35m" + PeonN;
-        tablero[1][5] = "\u001B[47m" + "\u001B[35m" + PeonN;
-        tablero[1][6] = "\u001B[40m" + "\u001B[35m" + PeonN;
-        tablero[1][7] = "\u001B[47m" + "\u001B[35m" + PeonN;
+        tablero[1][0] = BGN + PeonN;
+        tablero[1][1] = BGB + PeonN;
+        tablero[1][2] = BGN + PeonN;
+        tablero[1][3] = BGB + PeonN;
+        tablero[1][4] = BGN + PeonN;
+        tablero[1][5] = BGB + PeonN;
+        tablero[1][6] = BGN + PeonN;
+        tablero[1][7] = BGB + PeonN;
 
-        tablero[2][0] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[2][1] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[2][2] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[2][3] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[2][4] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[2][5] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[2][6] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[2][7] = "\u001B[40m" + "\u001B[35m" + "   ";
+        tablero[2][0] = BGB + "   ";
+        tablero[2][1] = BGN + "   ";
+        tablero[2][2] = BGB + "   ";
+        tablero[2][3] = BGN + "   ";
+        tablero[2][4] = BGB + "   ";
+        tablero[2][5] = BGN + "   ";
+        tablero[2][6] = BGB + "   ";
+        tablero[2][7] = BGN + "   ";
 
-        tablero[3][0] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[3][1] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[3][2] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[3][3] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[3][4] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[3][5] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[3][6] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[3][7] = "\u001B[47m" + "\u001B[35m" + "   ";
+        tablero[3][0] = BGN + "   ";
+        tablero[3][1] = BGB + "   ";
+        tablero[3][2] = BGN + "   ";
+        tablero[3][3] = BGB + "   ";
+        tablero[3][4] = BGN + "   ";
+        tablero[3][5] = BGB + "   ";
+        tablero[3][6] = BGN + "   ";
+        tablero[3][7] = BGB + "   ";
 
-        tablero[4][0] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[4][1] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[4][2] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[4][3] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[4][4] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[4][5] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[4][6] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[4][7] = "\u001B[40m" + "\u001B[35m" + "   ";
+        tablero[4][0] = BGB + "   ";
+        tablero[4][1] = BGN + "   ";
+        tablero[4][2] = BGB + "   ";
+        tablero[4][3] = BGN + "   ";
+        tablero[4][4] = BGB + "   ";
+        tablero[4][5] = BGN + "   ";
+        tablero[4][6] = BGB + "   ";
+        tablero[4][7] = BGN + "   ";
 
-        tablero[5][0] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[5][1] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[5][2] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[5][3] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[5][4] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[5][5] = "\u001B[47m" + "\u001B[35m" + "   ";
-        tablero[5][6] = "\u001B[40m" + "\u001B[35m" + "   ";
-        tablero[5][7] = "\u001B[47m" + "\u001B[35m" + "   ";
+        tablero[5][0] = BGN + "   ";
+        tablero[5][1] = BGB + "   ";
+        tablero[5][2] = BGN + "   ";
+        tablero[5][3] = BGB + "   ";
+        tablero[5][4] = BGN + "   ";
+        tablero[5][5] = BGB + "   ";
+        tablero[5][6] = BGN + "   ";
+        tablero[5][7] = BGB + "   ";
 
-        tablero[6][0] = "\u001B[47m" + "\u001B[35m" + PeonB;
-        tablero[6][1] = "\u001B[40m" + "\u001B[35m" + PeonB;
-        tablero[6][2] = "\u001B[47m" + "\u001B[35m" + PeonB;
-        tablero[6][3] = "\u001B[40m" + "\u001B[35m" + PeonB;
-        tablero[6][4] = "\u001B[47m" + "\u001B[35m" + PeonB;
-        tablero[6][5] = "\u001B[40m" + "\u001B[35m" + PeonB;
-        tablero[6][6] = "\u001B[47m" + "\u001B[35m" + PeonB;
-        tablero[6][7] = "\u001B[40m" + "\u001B[35m" + PeonB;
+        tablero[6][0] = BGB + PeonB;
+        tablero[6][1] = BGN + PeonB;
+        tablero[6][2] = BGB + PeonB;
+        tablero[6][3] = BGN + PeonB;
+        tablero[6][4] = BGB + PeonB;
+        tablero[6][5] = BGN + PeonB;
+        tablero[6][6] = BGB + PeonB;
+        tablero[6][7] = BGN + PeonB;
 
-        tablero[7][0] = "\u001B[40m" + "\u001B[35m" + TorreB;
-        tablero[7][1] = "\u001B[47m" + "\u001B[35m" + CaballoB;
-        tablero[7][2] = "\u001B[40m" + "\u001B[35m" + AlfilB;
-        tablero[7][3] = "\u001B[47m" + "\u001B[35m" + ReyB;
-        tablero[7][4] = "\u001B[40m" + "\u001B[35m" + DamaB;
-        tablero[7][5] = "\u001B[47m" + "\u001B[35m" + AlfilB;
-        tablero[7][6] = "\u001B[40m" + "\u001B[35m" + CaballoB;
-        tablero[7][7] = "\u001B[47m" + "\u001B[35m" + TorreB + "\u001B[0m";
+        tablero[7][0] = BGN + TorreB;
+        tablero[7][1] = BGB + CaballoB;
+        tablero[7][2] = BGN + AlfilB;
+        tablero[7][3] = BGB + ReyB;
+        tablero[7][4] = BGN + DamaB;
+        tablero[7][5] = BGB + AlfilB;
+        tablero[7][6] = BGN + CaballoB;
+        tablero[7][7] = BGB + TorreB + "\u001B[0m";
 
         return tablero;
     }
