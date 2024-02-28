@@ -17,16 +17,16 @@ public class prueba {
     static String ReyB = " R ";
     static String BGB = "\u001B[47m" + "\u001B[35m";
     static String BGN = "\u001B[40m" + "\u001B[35m";
+    static String[][] tablero = CrearTablero();
 
     public static void main(String[] args) {
-        CrearTablero();
-        ImprimirTablero(CrearTablero());
+        ImprimirTablero(tablero);
         Menu();
     }
 
     private static void Menu() {
         boolean finale = false;
-    do {
+        do {
             System.out.println("Seleccione una opción: ");
             System.out.println("Turno de blancas");
             System.out.println("1. Mover una pieza");
@@ -35,8 +35,8 @@ public class prueba {
             int opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
-                    ImprimirTablero(CrearTablero());
-                    ElegirPieza(CrearTablero());
+                    ImprimirTablero(tablero);
+                    ElegirPieza(tablero);
                     break;
                 case 2:
                     finale = true;
@@ -54,8 +54,8 @@ public class prueba {
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
-                    ImprimirTablero(CrearTablero());
-                    ElegirPieza(CrearTablero());
+                    ImprimirTablero(tablero);
+                    ElegirPieza(tablero);
                     break;
                 case 2:
                     finale = true;
@@ -73,6 +73,8 @@ public class prueba {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
+        String pieza2 = bibliotecab(pieza);
+
         System.out.println(pieza);
         System.out.println("Fila: ");
         int fila = sc.nextInt();
@@ -82,12 +84,36 @@ public class prueba {
         int fila2 = sc.nextInt();
         System.out.println("Columna a la que desea mover: ");
         int columna2 = sc.nextInt();
-        MoverPieza(fila, columna, fila2, columna2);
+        MoverPieza(tablero, fila, columna, fila2, columna2, pieza2);
     }
 
-    private static void MoverPieza(int fila, int columna, int fila2, int columna2) {
-        String[][] tablero = CrearTablero();
+    private static String bibliotecab(String pieza2) {
+        if (pieza2.equals("P")) {
+            return PeonB;
+        } else if (pieza2.equals("T")) {
+            return TorreB;
+        } else if (pieza2.equals("C")) {
+            return CaballoB;
+        } else if (pieza2.equals("A")) {
+            return AlfilB;
+        } else if (pieza2.equals("D")) {
+            return DamaB;
+        } else if (pieza2.equals("R")) {
+            return ReyB;
+        } else {
+            return "   ";
+        }
+    }
+
+    private static void MoverPieza(String[][] tablero, int fila, int columna, int fila2, int columna2, String pieza2) {
+        // String[][] tablero = CrearTablero();
         String pieza = tablero[fila][columna];
+        System.out.println("Esto tiene " + pieza);
+        if (pieza == (BGB + pieza2) || pieza == (BGN + pieza2)) {
+            System.out.println("Movimiento válido");
+        } else {
+            System.out.println("Movimiento inválido");
+        }
         tablero[fila][columna] = "   ";
         tablero[fila2][columna2] = pieza;
         ImprimirTablero(tablero);
