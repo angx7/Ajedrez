@@ -11,10 +11,10 @@ public class App {
     static String DamaB = " D ";
     static String ReyN = " R ";
     static String ReyB = " R "; 
+
     public static void main(String[] args) {
         CrearTablero();
         ImprimirTablero(CrearTablero());
-
     }
 
     private static String[][] ImprimirTablero(String[][] tablero) {
@@ -30,7 +30,7 @@ public class App {
 
     private static String[][] CrearTablero() {
         String[][] tablero = new String[8][8];
-
+        
         tablero[0][0] = "\u001B[47m" + "\u001B[35m" + TorreN;
         tablero[0][1] = "\u001B[40m" + "\u001B[35m" + CaballoN;
         tablero[0][2] = "\u001B[47m" + "\u001B[35m" + AlfilN;
@@ -105,5 +105,7 @@ public class App {
 
         return tablero;
     }
+
+
 
 }
