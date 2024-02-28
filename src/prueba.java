@@ -18,20 +18,20 @@ public class prueba {
                 esBlanco = !esBlanco;
                 if (i == 0 || i == 7) {
                     if (j == 0 || j == 7) {
-                        tablero[i][j] = "T"; // Torre
+                        tablero[i][j] += " T "; // Torre
                     } else if (j == 1 || j == 6) {
-                        tablero[i][j] = "C"; // Caballo
+                        tablero[i][j] += " C "; // Caballo
                     } else if (j == 2 || j == 5) {
-                        tablero[i][j] = "A"; // Alfil
+                        tablero[i][j] += " A "; // Alfil
                     } else if (j == 3) {
-                        tablero[i][j] = "D"; // Dama
+                        tablero[i][j] += " D "; // Dama
                     } else {
-                        tablero[i][j] = "R"; // Rey
+                        tablero[i][j] += " R "; // Rey
                     }
                 } else if (i == 1 || i == 6) {
-                    tablero[i][j] = "P"; // Peón
+                    tablero[i][j] += " P "; // Peón
                 } else {
-                    tablero[i][j] = " "; // Casilla vacía
+                    tablero[i][j] += "   "; // Casilla vacía
                 }
             }
             esBlanco = !esBlanco;
