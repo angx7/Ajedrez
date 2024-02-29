@@ -305,6 +305,7 @@ public class prueba {
         }
         return true;
     }
+
     private static void ImprimirTablero(String[][] tablero) {
         // Imprimir el tablero
         for (int i = 0; i < tablero.length; i++) {
@@ -316,87 +317,106 @@ public class prueba {
     }
 
     private static String[][] CrearTablero() {
-        String[][] tablero = new String[8][9];
+        String[][] tablero = new String[9][10];
 
-        tablero[0][0] = BGB + TorreN;
-        tablero[0][1] = BGN + CaballoN;
-        tablero[0][2] = BGB + AlfilN;
-        tablero[0][3] = BGN + DamaN;
-        tablero[0][4] = BGB + ReyN;
-        tablero[0][5] = BGN + AlfilN;
-        tablero[0][6] = BGB + CaballoN;
-        tablero[0][7] = BGN + TorreN;
-        tablero[0][8] = BG;
+        tablero[0][0] = " 8 ";
+        tablero[0][1] = BGB + TorreN;
+        tablero[0][2] = BGN + CaballoN;
+        tablero[0][3] = BGB + AlfilN;
+        tablero[0][4] = BGN + DamaN;
+        tablero[0][5] = BGB + ReyN;
+        tablero[0][6] = BGN + AlfilN;
+        tablero[0][7] = BGB + CaballoN;
+        tablero[0][8] = BGN + TorreN;
+        tablero[0][9] = BG;
 
-        tablero[1][0] = BGN + PeonN;
-        tablero[1][1] = BGB + PeonN;
-        tablero[1][2] = BGN + PeonN;
-        tablero[1][3] = BGB + PeonN;
-        tablero[1][4] = BGN + PeonN;
-        tablero[1][5] = BGB + PeonN;
-        tablero[1][6] = BGN + PeonN;
-        tablero[1][7] = BGB + PeonN;
-        tablero[1][8] = BG;
+        tablero[1][0] = " 7 ";
+        tablero[1][1] = BGN + PeonN;
+        tablero[1][2] = BGB + PeonN;
+        tablero[1][3] = BGN + PeonN;
+        tablero[1][4] = BGB + PeonN;
+        tablero[1][5] = BGN + PeonN;
+        tablero[1][6] = BGB + PeonN;
+        tablero[1][7] = BGN + PeonN;
+        tablero[1][8] = BGB + PeonN;
+        tablero[1][9] = BG;
 
-        tablero[2][0] = BGB + "   ";
-        tablero[2][1] = BGN + "   ";
-        tablero[2][2] = BGB + "   ";
-        tablero[2][3] = BGN + "   ";
-        tablero[2][4] = BGB + "   ";
-        tablero[2][5] = BGN + "   ";
-        tablero[2][6] = BGB + "   ";
-        tablero[2][7] = BGN + "   ";
-        tablero[2][8] = BG;
+        tablero[2][0] = " 6 ";
+        tablero[2][1] = BGB + "   ";
+        tablero[2][2] = BGN + "   ";
+        tablero[2][3] = BGB + "   ";
+        tablero[2][4] = BGN + "   ";
+        tablero[2][5] = BGB + "   ";
+        tablero[2][6] = BGN + "   ";
+        tablero[2][7] = BGB + "   ";
+        tablero[2][8] = BGN + "   ";
+        tablero[2][9] = BG;
 
-        tablero[3][0] = BGN + "   ";
-        tablero[3][1] = BGB + "   ";
-        tablero[3][2] = BGN + "   ";
-        tablero[3][3] = BGB + "   ";
-        tablero[3][4] = BGN + "   ";
-        tablero[3][5] = BGB + "   ";
-        tablero[3][6] = BGN + "   ";
-        tablero[3][7] = BGB + "   ";
-        tablero[3][8] = BG;
+        tablero[3][0] = " 5 ";
+        tablero[3][1] = BGN + "   ";
+        tablero[3][2] = BGB + "   ";
+        tablero[3][3] = BGN + "   ";
+        tablero[3][4] = BGB + "   ";
+        tablero[3][5] = BGN + "   ";
+        tablero[3][6] = BGB + "   ";
+        tablero[3][7] = BGN + "   ";
+        tablero[3][8] = BGB + "   ";
+        tablero[3][9] = BG;
 
-        tablero[4][0] = BGB + "   ";
-        tablero[4][1] = BGN + "   ";
-        tablero[4][2] = BGB + "   ";
-        tablero[4][3] = BGN + "   ";
-        tablero[4][4] = BGB + "   ";
-        tablero[4][5] = BGN + "   ";
-        tablero[4][6] = BGB + "   ";
-        tablero[4][7] = BGN + "   ";
-        tablero[4][8] = BG;
+        tablero[4][0] = " 4 ";
+        tablero[4][1] = BGB + "   ";
+        tablero[4][2] = BGN + "   ";
+        tablero[4][3] = BGB + "   ";
+        tablero[4][4] = BGN + "   ";
+        tablero[4][5] = BGB + "   ";
+        tablero[4][6] = BGN + "   ";
+        tablero[4][7] = BGB + "   ";
+        tablero[4][8] = BGN + "   ";
+        tablero[4][9] = BG;
 
-        tablero[5][0] = BGN + "   ";
-        tablero[5][1] = BGB + "   ";
-        tablero[5][2] = BGN + "   ";
-        tablero[5][3] = BGB + "   ";
-        tablero[5][4] = BGN + "   ";
-        tablero[5][5] = BGB + "   ";
-        tablero[5][6] = BGN + "   ";
-        tablero[5][7] = BGB + "   ";
-        tablero[5][8] = BG;
+        tablero[5][0] = " 3 ";
+        tablero[5][1] = BGN + "   ";
+        tablero[5][2] = BGB + "   ";
+        tablero[5][3] = BGN + "   ";
+        tablero[5][4] = BGB + "   ";
+        tablero[5][5] = BGN + "   ";
+        tablero[5][6] = BGB + "   ";
+        tablero[5][7] = BGN + "   ";
+        tablero[5][8] = BGB + "   ";
+        tablero[5][9] = BG;
 
-        tablero[6][0] = BGB + PeonB;
-        tablero[6][1] = BGN + PeonB;
-        tablero[6][2] = BGB + PeonB;
-        tablero[6][3] = BGN + PeonB;
-        tablero[6][4] = BGB + PeonB;
-        tablero[6][5] = BGN + PeonB;
-        tablero[6][6] = BGB + PeonB;
-        tablero[6][7] = BGN + PeonB;
-        tablero[6][8] = BG;
+        tablero[6][0] = " 2 ";
+        tablero[6][1] = BGB + PeonB;
+        tablero[6][2] = BGN + PeonB;
+        tablero[6][3] = BGB + PeonB;
+        tablero[6][4] = BGN + PeonB;
+        tablero[6][5] = BGB + PeonB;
+        tablero[6][6] = BGN + PeonB;
+        tablero[6][7] = BGB + PeonB;
+        tablero[6][8] = BGN + PeonB;
+        tablero[6][9] = BG;
 
-        tablero[7][0] = BGN + TorreB;
-        tablero[7][1] = BGB + CaballoB;
-        tablero[7][2] = BGN + AlfilB;
-        tablero[7][3] = BGB + ReyB;
-        tablero[7][4] = BGN + DamaB;
-        tablero[7][5] = BGB + AlfilB;
-        tablero[7][6] = BGN + CaballoB;
-        tablero[7][7] = BGB + TorreB;
-        tablero[7][8] = BG;
+        tablero[7][0] = " 1 ";
+        tablero[7][1] = BGN + TorreB;
+        tablero[7][2] = BGB + CaballoB;
+        tablero[7][3] = BGN + AlfilB;
+        tablero[7][4] = BGB + ReyB;
+        tablero[7][5] = BGN + DamaB;
+        tablero[7][6] = BGB + AlfilB;
+        tablero[7][7] = BGN + CaballoB;
+        tablero[7][8] = BGB + TorreB;
+        tablero[7][9] = BG;
+
+        tablero[8][0] = "   ";
+        tablero[8][1] = " A ";
+        tablero[8][2] = " B ";
+        tablero[8][3] = " C ";
+        tablero[8][4] = " D ";
+        tablero[8][5] = " E ";
+        tablero[8][6] = " F ";
+        tablero[8][7] = " G ";
+        tablero[8][8] = " H ";
+        tablero[8][9] = "   ";
 
         return tablero;
     }
