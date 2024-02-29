@@ -17,6 +17,7 @@ public class prueba {
     static String ReyB = " R ";
     static String BGB = "\u001B[47m" + "\u001B[35m";
     static String BGN = "\u001B[40m" + "\u001B[35m";
+    static String BG = "\u001B[0m";
     static String[][] tablero = CrearTablero();
 
     public static void main(String[] args) {
@@ -27,7 +28,7 @@ public class prueba {
     private static void Menu() {
         boolean finale = false;
         do {
-            System.out.println("Seleccione una opción: ");
+            System.out.println(BG + "Seleccione una opción: ");
             System.out.println("Turno de blancas");
             System.out.println("1. Mover una pieza");
             System.out.println("2. Salir");
@@ -137,19 +138,20 @@ public class prueba {
         ImprimirTablero(tablero);
     }
 
-    private static String[][] ImprimirTablero(String[][] tablero) {
+    private static void ImprimirTablero(String[][] tablero) {
         // Imprimir el tablero
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                System.out.print(tablero[i][j]);
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                System.out.print(tablero[i][j] );
             }
             System.out.println();
         }
-        return tablero;
     }
 
+
+
     private static String[][] CrearTablero() {
-        String[][] tablero = new String[8][8];
+        String[][] tablero = new String[8][9];
 
         tablero[0][0] = BGB + TorreN;
         tablero[0][1] = BGN + CaballoN;
@@ -159,6 +161,7 @@ public class prueba {
         tablero[0][5] = BGN + AlfilN;
         tablero[0][6] = BGB + CaballoN;
         tablero[0][7] = BGN + TorreN;
+        tablero[0][8] = BG;
 
         tablero[1][0] = BGN + PeonN;
         tablero[1][1] = BGB + PeonN;
@@ -168,6 +171,7 @@ public class prueba {
         tablero[1][5] = BGB + PeonN;
         tablero[1][6] = BGN + PeonN;
         tablero[1][7] = BGB + PeonN;
+        tablero[1][8] = BG;
 
         tablero[2][0] = BGB + "   ";
         tablero[2][1] = BGN + "   ";
@@ -177,6 +181,7 @@ public class prueba {
         tablero[2][5] = BGN + "   ";
         tablero[2][6] = BGB + "   ";
         tablero[2][7] = BGN + "   ";
+        tablero[2][8] = BG;
 
         tablero[3][0] = BGN + "   ";
         tablero[3][1] = BGB + "   ";
@@ -186,6 +191,7 @@ public class prueba {
         tablero[3][5] = BGB + "   ";
         tablero[3][6] = BGN + "   ";
         tablero[3][7] = BGB + "   ";
+        tablero[3][8] = BG;
 
         tablero[4][0] = BGB + "   ";
         tablero[4][1] = BGN + "   ";
@@ -195,6 +201,7 @@ public class prueba {
         tablero[4][5] = BGN + "   ";
         tablero[4][6] = BGB + "   ";
         tablero[4][7] = BGN + "   ";
+        tablero[4][8] = BG;
 
         tablero[5][0] = BGN + "   ";
         tablero[5][1] = BGB + "   ";
@@ -204,6 +211,7 @@ public class prueba {
         tablero[5][5] = BGB + "   ";
         tablero[5][6] = BGN + "   ";
         tablero[5][7] = BGB + "   ";
+        tablero[5][8] = BG;
 
         tablero[6][0] = BGB + PeonB;
         tablero[6][1] = BGN + PeonB;
@@ -213,6 +221,7 @@ public class prueba {
         tablero[6][5] = BGN + PeonB;
         tablero[6][6] = BGB + PeonB;
         tablero[6][7] = BGN + PeonB;
+        tablero[6][8] = BG;
 
         tablero[7][0] = BGN + TorreB;
         tablero[7][1] = BGB + CaballoB;
@@ -221,7 +230,8 @@ public class prueba {
         tablero[7][4] = BGN + DamaB;
         tablero[7][5] = BGB + AlfilB;
         tablero[7][6] = BGN + CaballoB;
-        tablero[7][7] = BGB + TorreB + "\u001B[0m";
+        tablero[7][7] = BGB + TorreB;
+        tablero[7][8] = BG;
 
         return tablero;
     }
