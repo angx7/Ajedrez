@@ -80,7 +80,7 @@ public class prueba {
 
     }
 
-    private static void ElegirPiezaR(String[][] tablero2, boolean turnoBlancas) {
+    private static boolean ElegirPiezaR(String[][] tablero2, boolean turnoBlancas) {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
@@ -96,20 +96,90 @@ public class prueba {
         int fila2 = sc.nextInt();
         System.out.println("Columna a la que desea mover: ");
         int columna2 = sc.nextInt();
-        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza2, turnoBlancas, pz);
+        return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza2, turnoBlancas, pz);
+    }
+
+    private static boolean MoverPiezaR(String[][] tablero2, int fila, int columna, int fila2, int columna2,
+            String pieza2, boolean turnoBlancas, String pz) {
+        if (!turnoBlancas && pieza.contains("N")) { // Si es el turno de las negras y
+            pieza = tablero[fila][columna];
+            if (pieza.equals(BGB + pieza2)) {
+                tablero[fila][columna] = BGB + "   ";
+                String pieza3 = tablero[fila2][columna2];
+                if (pieza3.equals(BGN + "   ")) {
+                    tablero[fila2][columna2] = BGN + pieza2;
+                } else if (pieza3.equals(BGB + "   ")) {
+                    tablero[fila2][columna2] = BGB + pieza2;
+
+                } else {
+                    System.out.println("No se puede mover a esa posición");
+                    return false;
+                }
+
+            } else if (pieza.equals(BGN + pieza2)) {
+                tablero[fila][columna] = BGN + "   ";
+                String pieza3 = tablero[fila2][columna2];
+                if (pieza3.equals(BGN + "   ")) {
+                    tablero[fila2][columna2] = BGN + pieza2;
+                } else if (pieza3.equals(BGB + "   ")) {
+                    tablero[fila2][columna2] = BGB + pieza2;
+
+                } else {
+                    System.out.println("No se puede mover a esa posición");
+                    return false;
+                }
+            } else {
+                System.out.println("No hay ninguna pieza en esa posición");
+                return false;
+            }
+
+            ImprimirTablero(tablero);
+            turnoBlancas = true; // Cambiar al turno de las blancas
+        } else {
+            System.out.println("No es el turno de esa pieza");
+            return false;
+        }
+        return false;
     }
 
     private static String BibliotecaR(String pieza2) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'BibliotecaR'");
-	}
+        if (pieza2.equals("P")) {
+            return "PeonN";
+        } else if (pieza2.equals("T")) {
+            return "TorreN";
+        } else if (pieza2.equals("C")) {
+            return "CaballoN";
+        } else if (pieza2.equals("A")) {
+            return "AlfilN";
+        } else if (pieza2.equals("D")) {
+            return "DamaN";
+        } else if (pieza2.equals("R")) {
+            return "ReyN";
+        } else {
+            return "   ";
+        }
+    }
 
-	private static String bibliotecar(String pieza2) {
-		// TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'bibliotecar'");
-	}
+    private static String bibliotecar(String pieza2) {
+        if (pieza2.equals("P")) {
+            return PeonN;
+        } else if (pieza2.equals("T")) {
+            return TorreN;
+        } else if (pieza2.equals("C")) {
+            return CaballoN;
+        } else if (pieza2.equals("A")) {
+            return AlfilN;
+        } else if (pieza2.equals("D")) {
+            return DamaN;
+        } else if (pieza2.equals("R")) {
+            return ReyN;
+        } else {
+            return "   ";
 
-	private static boolean ElegirPieza(String[][] tablero, boolean turnoBlancas) {
+        }
+    }
+
+    private static boolean ElegirPieza(String[][] tablero, boolean turnoBlancas) {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
@@ -210,43 +280,7 @@ public class prueba {
     }
 
     /*
-     * if (!turnoBlancas && pieza.contains("N")) { // Si es el turno de las negras y
-     * la pieza es negra
-     * // Mover la pieza
-     * // ...
-     * pieza = tablero[fila][columna];
-     * if (pieza.equals(BGB + pieza2)) {
-     * tablero[fila][columna] = BGB + "   ";
-     * String pieza3 = tablero[fila2][columna2];
-     * if (pieza3.equals(BGN + "   ")) {
-     * tablero[fila2][columna2] = BGN + pieza2;
-     * } else if (pieza3.equals(BGB + "   ")) {
-     * tablero[fila2][columna2] = BGB + pieza2;
      * 
-     * } else {
-     * System.out.println("No se puede mover a esa posición");
-     * }
-     * 
-     * } else if (pieza.equals(BGN + pieza2)) {
-     * tablero[fila][columna] = BGN + "   ";
-     * String pieza3 = tablero[fila2][columna2];
-     * if (pieza3.equals(BGN + "   ")) {
-     * tablero[fila2][columna2] = BGN + pieza2;
-     * } else if (pieza3.equals(BGB + "   ")) {
-     * tablero[fila2][columna2] = BGB + pieza2;
-     * 
-     * } else {
-     * System.out.println("No se puede mover a esa posición");
-     * }
-     * } else {
-     * System.out.println("No hay ninguna pieza en esa posición");
-     * }
-     * 
-     * ImprimirTablero(tablero);
-     * turnoBlancas = true; // Cambiar al turno de las blancas
-     * } else {
-     * System.out.println("No es el turno de esa pieza");
-     * }
      */
     // private static void MoverPieza(String[][] tablero, int fila, int columna, int
     // fila2, int columna2, String pieza2) {
