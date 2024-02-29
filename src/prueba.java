@@ -40,7 +40,10 @@ public class prueba {
                 switch (opcion) {
                     case 1:
                         ImprimirTablero(tablero);
-                        ElegirPieza(tablero, turnoBlancas);
+                        boolean TBlancaS = ElegirPieza(tablero, turnoBlancas);
+                        if (TBlancaS) {
+                            TBlancas = false;
+                        }
                         break;
                     case 2:
                         finale = true;
@@ -50,7 +53,6 @@ public class prueba {
                         break;
                 }
             } while (TBlancas);
-           
 
             System.out.println("Seleccione una opción: ");
             System.out.println("Turno de negras");
@@ -76,7 +78,7 @@ public class prueba {
 
     }
 
-    private static void ElegirPieza(String[][] tablero, boolean turnoBlancas) {
+    private static boolean ElegirPieza(String[][] tablero, boolean turnoBlancas) {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
@@ -92,10 +94,10 @@ public class prueba {
         int fila2 = sc.nextInt();
         System.out.println("Columna a la que desea mover: ");
         int columna2 = sc.nextInt();
-        MoverPieza(tablero, fila, columna, fila2, columna2, pieza2, turnoBlancas, pz);
+        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza2, turnoBlancas, pz);
     }
 
-    private static String BibliotecaB(String pz){
+    private static String BibliotecaB(String pz) {
         if (pz.equals("P")) {
             return "PeonB";
         } else if (pz.equals("T")) {
@@ -131,7 +133,8 @@ public class prueba {
         }
     }
 
-    private static void MoverPieza(String[][] tablero, int fila, int columna, int fila2, int columna2, String pieza2, boolean turnoBlancas, String pz) {
+    private static boolean MoverPieza(String[][] tablero, int fila, int columna, int fila2, int columna2, String pieza2,
+            boolean turnoBlancas, String pz) {
         String pieza = tablero[fila][columna];
         // String pz = BibliotecaB(pieza2);
         if (turnoBlancas && pz.contains("B")) { // Si es el turno de las blancas y la pieza es blanca
@@ -146,6 +149,7 @@ public class prueba {
 
                 } else {
                     System.out.println("No se puede mover a esa posición");
+                    return false;
                 }
 
             } else if (pieza.equals(BGN + pieza2)) {
@@ -158,50 +162,61 @@ public class prueba {
 
                 } else {
                     System.out.println("No se puede mover a esa posición");
+                    return false;
                 }
             } else {
                 System.out.println("No hay ninguna pieza en esa posición");
+                return false;
             }
 
             ImprimirTablero(tablero);
             turnoBlancas = false; // Cambiar al turno de las negras
-        } else if (!turnoBlancas && pieza.contains("N")) { // Si es el turno de las negras y la pieza es negra
-            // Mover la pieza
-            // ...
-            pieza = tablero[fila][columna];
-            if (pieza.equals(BGB + pieza2)) {
-                tablero[fila][columna] = BGB + "   ";
-                String pieza3 = tablero[fila2][columna2];
-                if (pieza3.equals(BGN + "   ")) {
-                    tablero[fila2][columna2] = BGN + pieza2;
-                } else if (pieza3.equals(BGB + "   ")) {
-                    tablero[fila2][columna2] = BGB + pieza2;
-
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                }
-
-            } else if (pieza.equals(BGN + pieza2)) {
-                tablero[fila][columna] = BGN + "   ";
-                String pieza3 = tablero[fila2][columna2];
-                if (pieza3.equals(BGN + "   ")) {
-                    tablero[fila2][columna2] = BGN + pieza2;
-                } else if (pieza3.equals(BGB + "   ")) {
-                    tablero[fila2][columna2] = BGB + pieza2;
-
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                }
-            } else {
-                System.out.println("No hay ninguna pieza en esa posición");
-            }
-
-            ImprimirTablero(tablero);
-            turnoBlancas = true; // Cambiar al turno de las blancas
         } else {
             System.out.println("No es el turno de esa pieza");
+            return false;
         }
+        return true;
     }
+
+    /*
+     * if (!turnoBlancas && pieza.contains("N")) { // Si es el turno de las negras y
+     * la pieza es negra
+     * // Mover la pieza
+     * // ...
+     * pieza = tablero[fila][columna];
+     * if (pieza.equals(BGB + pieza2)) {
+     * tablero[fila][columna] = BGB + "   ";
+     * String pieza3 = tablero[fila2][columna2];
+     * if (pieza3.equals(BGN + "   ")) {
+     * tablero[fila2][columna2] = BGN + pieza2;
+     * } else if (pieza3.equals(BGB + "   ")) {
+     * tablero[fila2][columna2] = BGB + pieza2;
+     * 
+     * } else {
+     * System.out.println("No se puede mover a esa posición");
+     * }
+     * 
+     * } else if (pieza.equals(BGN + pieza2)) {
+     * tablero[fila][columna] = BGN + "   ";
+     * String pieza3 = tablero[fila2][columna2];
+     * if (pieza3.equals(BGN + "   ")) {
+     * tablero[fila2][columna2] = BGN + pieza2;
+     * } else if (pieza3.equals(BGB + "   ")) {
+     * tablero[fila2][columna2] = BGB + pieza2;
+     * 
+     * } else {
+     * System.out.println("No se puede mover a esa posición");
+     * }
+     * } else {
+     * System.out.println("No hay ninguna pieza en esa posición");
+     * }
+     * 
+     * ImprimirTablero(tablero);
+     * turnoBlancas = true; // Cambiar al turno de las blancas
+     * } else {
+     * System.out.println("No es el turno de esa pieza");
+     * }
+     */
     // private static void MoverPieza(String[][] tablero, int fila, int columna, int
     // fila2, int columna2, String pieza2) {
     // String pieza = tablero[fila][columna];
