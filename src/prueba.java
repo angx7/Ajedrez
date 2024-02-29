@@ -54,31 +54,62 @@ public class prueba {
                 }
             } while (TBlancas);
 
-            System.out.println("Seleccione una opción: ");
-            System.out.println("Turno de negras");
-            turnoBlancas = false; // Cambiar al turno de las negras
-            System.out.println("1. Mover una pieza");
-            System.out.println("2. Salir");
-            System.out.println("Opción: ");
-            opcion = sc.nextInt();
-            switch (opcion) {
-                case 1:
-                    ImprimirTablero(tablero);
-                    ElegirPieza(tablero, turnoBlancas);
-                    break;
-                case 2:
-                    finale = true;
-                    break;
-                default:
-                    System.out.println("Opción no válida");
-                    break;
-            }
+            do {
+                System.out.println("Seleccione una opción: ");
+                System.out.println("Turno de negras");
+                turnoBlancas = false; // Cambiar al turno de las negras
+                System.out.println("1. Mover una pieza");
+                System.out.println("2. Salir");
+                System.out.println("Opción: ");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1:
+                        ImprimirTablero(tablero);
+                        ElegirPiezaR(tablero, turnoBlancas);
+                        break;
+                    case 2:
+                        finale = true;
+                        break;
+                    default:
+                        System.out.println("Opción no válida");
+                        break;
+                }
+            } while (TNegras);
 
         } while (finale == false);
 
     }
 
-    private static boolean ElegirPieza(String[][] tablero, boolean turnoBlancas) {
+    private static void ElegirPiezaR(String[][] tablero2, boolean turnoBlancas) {
+        System.out.println("Elija la pieza que desea mover: ");
+        pieza = sc.nextLine().toUpperCase();
+        pieza = sc.nextLine().toUpperCase();
+        String pieza2 = bibliotecar(pieza);
+        String pz = BibliotecaR(pieza);
+
+        System.out.println(pieza);
+        System.out.println("Fila: ");
+        int fila = sc.nextInt();
+        System.out.println("Columna: ");
+        int columna = sc.nextInt();
+        System.out.println("Fila a la que desea mover: ");
+        int fila2 = sc.nextInt();
+        System.out.println("Columna a la que desea mover: ");
+        int columna2 = sc.nextInt();
+        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza2, turnoBlancas, pz);
+    }
+
+    private static String BibliotecaR(String pieza2) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'BibliotecaR'");
+	}
+
+	private static String bibliotecar(String pieza2) {
+		// TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'bibliotecar'");
+	}
+
+	private static boolean ElegirPieza(String[][] tablero, boolean turnoBlancas) {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
