@@ -307,9 +307,9 @@ public class prueba {
     }
 
     private static boolean ValidarD(String[][] tablero2, int fila, int columna, int fila2, int columna2) {
-        int filacomp = (fila2 - fila)*-1;
+        int filacomp = (fila2 - fila) * -1;
         int columnacomp = columna2 - columna;
-        boolean continuar = false; 
+        boolean continuar = false;
 
         if (filacomp > 0 && columnacomp > 0) {
             for (int i = 1; i < filacomp; i++) {
@@ -323,7 +323,7 @@ public class prueba {
                     }
                 }
             }
-        } else if(filacomp < 0 && columnacomp < 0){
+        } else if (filacomp < 0 && columnacomp < 0) {
             filacomp = fila - fila2; // 2
             columnacomp = columna - columna2;
             for (int i = 1; i < filacomp; i++) {
@@ -337,7 +337,7 @@ public class prueba {
                     }
                 }
             }
-        } else if (filacomp > 0 && columnacomp < 0){
+        } else if (filacomp > 0 && columnacomp < 0) {
             columnacomp = columna - columna2;
             for (int i = 1; i < filacomp; i++) {
                 for (int j = 1; j < columnacomp; j++) {
@@ -350,7 +350,7 @@ public class prueba {
                     }
                 }
             }
-        } else if (filacomp < 0 && columnacomp > 0){
+        } else if (filacomp < 0 && columnacomp > 0) {
             filacomp = fila - fila2;
             for (int i = 1; i < filacomp; i++) {
                 for (int j = 1; j < columnacomp; j++) {
@@ -432,6 +432,7 @@ public class prueba {
             return false;
         }
     }
+
     private static boolean ValidarTyPR(String[][] tablero2, int fila, int columna, int columna2,
             int fila2) {
         int filacomp;
