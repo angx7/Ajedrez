@@ -286,12 +286,32 @@ public class prueba {
         // Obtenermos "PeonB"
         String concatenarN1 = BGB + pieza;
         String concatenarN2 = BGN + pieza;
+        
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+            if (ValidarTyP(tablero, fila, columna, pieza, columna2, fila2)) {
+                return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+            }
+            return false;
         } else {
             System.out.println("No puedes mover esta pieza");
             return false;
         }
+    }
+
+    // TORRES Y PEONES 
+    private static boolean ValidarTyP(String[][] tablero2, int fila, int columna, String pieza2, int fila2,
+            int columna2) {
+        // fila  = 6
+        // fila2 = 4
+        // rango = 2
+        // fila2 + i = 5, 6; 
+        // columna = 1
+        //columna2 = 1
+        // if (columna != columna2) { }else{ columna}
+
+        //CHECAR WHITEBOARD
+
+        return true;
     }
 
     private static String bibliotecaB(String pieza2) {
