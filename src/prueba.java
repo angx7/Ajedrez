@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class prueba {
+    // Declaración de variables globales
     static Scanner sc = new Scanner(System.in);
     static String pieza;
     static String PeonN = " p ";
@@ -20,11 +21,30 @@ public class prueba {
     static String BG = "\u001B[0m";
     static String[][] tablero = CrearTablero();
 
+    // Método principal
     public static void main(String[] args) {
         ImprimirTablero(tablero);
         Menu();
     }
 
+    // Métodos de comprobación
+    // Método para validar que el usuario ingresó numeros enteros
+    public static boolean validarNumeros(String numero) {
+        int num;
+        try {
+            num = Integer.parseInt(numero);
+            if (num < 1 || num > 8) {
+                return false;
+            }
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    // Método para el menú
     private static void Menu() {
         boolean finale = false, turnoBlancas;
         int opcion;
@@ -84,19 +104,45 @@ public class prueba {
 
     }
 
+    // Método para elegir una pieza
     private static boolean ElegirPiezaR(String[][] tablero2, boolean turnoBlancas) {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toLowerCase();
         pieza = sc.nextLine().toLowerCase();
         System.out.println(pieza);
-        System.out.println("Fila: ");
-        int fila = sc.nextInt();
         System.out.println("Columna: ");
-        int columna = sc.nextInt();
-        System.out.println("Fila a la que desea mover: ");
-        int fila2 = sc.nextInt();
+        String columnas = sc.nextLine().toUpperCase();
+        int valF = validarEntrada(columnas);
+        while (valF == 0) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
+            columnas = sc.nextLine().toUpperCase();
+            valF = validarEntrada(columnas);
+        }
+        int columna = valF;
+        System.out.println("Fila: ");
+        String filas = sc.nextLine();
+        while (!validarNumeros(filas)) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+            filas = sc.next();
+        }
+        int fila = NuevaPos(Integer.parseInt(filas));
         System.out.println("Columna a la que desea mover: ");
-        int columna2 = sc.nextInt();
+        String columnas2 = sc.nextLine().toUpperCase();
+        int valF2 = validarEntrada(columnas2);
+        while (valF2 == 0) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
+            columnas2 = sc.nextLine().toUpperCase();
+            valF2 = validarEntrada(columnas2);
+        }
+        int columna2 = valF2;
+        System.out.println("Fila a la que desea mover: ");
+        String filas2 = sc.nextLine();
+        while (!validarNumeros(filas2)) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+            filas2 = sc.next();
+        }
+        int fila2 = NuevaPos(Integer.parseInt(filas2));
+
         String comp = tablero[fila][columna];
         // Obtenemos "color de la casilla y la letra de la pieza"
         String pieza2 = bibliotecar(pieza);
@@ -201,14 +247,40 @@ public class prueba {
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
         System.out.println(pieza);
-        System.out.println("Fila: ");
-        int fila = sc.nextInt();
         System.out.println("Columna: ");
-        int columna = sc.nextInt();
-        System.out.println("Fila a la que desea mover: ");
-        int fila2 = sc.nextInt();
+        String columnas = sc.nextLine().toUpperCase();
+        int valF = validarEntrada(columnas);
+        while (valF == 0) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
+            columnas = sc.nextLine().toUpperCase();
+            valF = validarEntrada(columnas);
+        }
+        int columna = valF;
+
+        System.out.println("Fila: ");
+        String filas = sc.nextLine();
+        while (!validarNumeros(filas)) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+            filas = sc.next();
+        }
+        int fila = NuevaPos(Integer.parseInt(filas));
         System.out.println("Columna a la que desea mover: ");
-        int columna2 = sc.nextInt();
+        String columnas2 = sc.nextLine().toUpperCase();
+        int valF2 = validarEntrada(columnas2);
+        while (valF2 == 0) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
+            columnas2 = sc.nextLine().toUpperCase();
+            valF2 = validarEntrada(columnas2);
+        }
+        int columna2 = valF2;
+        System.out.println("Fila a la que desea mover: ");
+        String filas2 = sc.nextLine();
+        while (!validarNumeros(filas2)) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+            filas2 = sc.next();
+        }
+        int fila2 = NuevaPos(Integer.parseInt(filas2));
+
         String comp = tablero[fila][columna];
         // Obtenemos "color de la casilla y la letra de la pieza"
         String pieza2 = bibliotecab(pieza);
@@ -222,6 +294,56 @@ public class prueba {
         } else {
             System.out.println("No puedes mover esta pieza");
             return false;
+        }
+    }
+
+    private static int NuevaPos(int filas) {
+        switch (filas) {
+            case 1:
+                return 7;
+            case 2:
+                return 6;
+            case 3:
+                return 5;
+            case 4:
+                return 4;
+            case 5:
+                return 3;
+            case 6:
+                return 2;
+            case 7:
+                return 1;
+            default:
+                return 0;
+        }
+    }
+
+    private static int validarEntrada(String fila) {
+        boolean match = fila.matches("[A-H]");
+        if (match) {
+            switch (fila) {
+                case "A":
+                    return 1;
+                case "B":
+                    return 2;
+                case "C":
+                    return 3;
+                case "D":
+                    return 4;
+                case "E":
+                    return 5;
+                case "F":
+                    return 6;
+                case "G":
+                    return 7;
+                case "H":
+                    return 8;
+                default:
+                    return 0;
+            }
+        } else {
+            System.out.println("Entrada no válida");
+            return 0;
         }
     }
 
