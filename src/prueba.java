@@ -152,7 +152,7 @@ public class prueba {
         String concatenarN1 = BGB + pieza;
         String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            boolean Validartyp = ValidarTyPR(tablero, fila, columna, pieza, columna2, fila2);
+            boolean Validartyp = ValidarTyPR(tablero, fila, columna, columna2, fila2);
             if (Validartyp == true) {
                 return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
             }
@@ -277,6 +277,7 @@ public class prueba {
             valF2 = validarEntrada(columnas2);
         }
         int columna2 = valF2;
+
         System.out.println("Fila a la que desea mover: ");
         String filas2 = sc.nextLine();
         while (!validarNumeros(filas2)) {
@@ -292,7 +293,7 @@ public class prueba {
         String concatenarN2 = BGN + pieza;
 
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            boolean Validartyp = ValidarTyP(tablero, fila, columna, pieza, columna2, fila2);
+            boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
             boolean ValidarD = false;
             if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB)) {
                 ValidarD = ValidarD(tablero, fila, columna, fila2, columna2);
@@ -371,14 +372,14 @@ public class prueba {
     }
 
     // TORRES Y PEONES
-    private static boolean ValidarTyP(String[][] tablero2, int fila, int columna, String pieza2, int fila2,
-            int columna2) {
+    private static boolean ValidarTyP(String[][] tablero2, int fila, int columna, int columna2,
+            int fila2) {
         int filacomp;
         int columnacomp;
         boolean continuar = false;
         if (fila > fila2) {
             filacomp = fila - fila2;
-            for (int i = 1; i < filacomp; i++) {
+            for (int i = 1; i <= filacomp; i++) {
                 if (tablero[fila - i][columna].equals(BGB + "    ")
                         || tablero[fila - i][columna].equals(BGN + "    ")) {
                     continuar = true;
@@ -389,7 +390,7 @@ public class prueba {
             }
         } else {
             filacomp = fila2 - fila;
-            for (int i = 1; i < filacomp; i++) {
+            for (int i = 1; i <= filacomp; i++) {
                 if (tablero[fila + i][columna].equals(BGB + "    ")
                         || tablero[fila + i][columna].equals(BGN + "    ")) {
                     continuar = true;
@@ -404,7 +405,7 @@ public class prueba {
         }
         if (columna > columna2) {
             columnacomp = columna - columna2;
-            for (int i = 1; i < columnacomp; i++) {
+            for (int i = 1; i <= columnacomp; i++) {
                 if (tablero[fila][columna - i].equals(BGB + "    ")
                         || tablero[fila][columna - i].equals(BGN + "    ")) {
                     continuar = true;
@@ -415,7 +416,7 @@ public class prueba {
             }
         } else {
             columnacomp = columna2 - columna;
-            for (int i = 1; i < columnacomp; i++) {
+            for (int i = 1; i <= columnacomp; i++) {
                 if (tablero[fila][columna + i].equals(BGB + "    ")
                         || tablero[fila][columna + i].equals(BGN + "    ")) {
                     continuar = true;
@@ -431,16 +432,16 @@ public class prueba {
             return false;
         }
     }
-    private static boolean ValidarTyPR(String[][] tablero2, int fila, int columna, String pieza2, int fila2,
-            int columna2) {
+    private static boolean ValidarTyPR(String[][] tablero2, int fila, int columna, int columna2,
+            int fila2) {
         int filacomp;
         int columnacomp;
         boolean continuar = false;
         if (fila < fila2) {
             filacomp = fila2 - fila;
-            for (int i = 1; i < filacomp; i++) {
-                if (tablero[fila - i][columna].equals(BGB + "    ")
-                        || tablero[fila - i][columna].equals(BGN + "    ")) {
+            for (int i = 1; i <= filacomp; i++) {
+                if (tablero[fila + i][columna].equals(BGB + "    ")
+                        || tablero[fila + i][columna].equals(BGN + "    ")) {
                     continuar = true;
                 } else {
                     System.out.println("No se puede mover a esa posición");
@@ -449,9 +450,9 @@ public class prueba {
             }
         } else {
             filacomp = fila - fila2;
-            for (int i = 1; i < filacomp; i++) {
-                if (tablero[fila + i][columna].equals(BGB + "    ")
-                        || tablero[fila + i][columna].equals(BGN + "    ")) {
+            for (int i = 1; i <= filacomp; i++) {
+                if (tablero[fila - i][columna].equals(BGB + "    ")
+                        || tablero[fila - i][columna].equals(BGN + "    ")) {
                     continuar = true;
                 } else {
                     System.out.println("No se puede mover a esa posición");
@@ -464,7 +465,7 @@ public class prueba {
         }
         if (columna > columna2) {
             columnacomp = columna - columna2;
-            for (int i = 1; i < columnacomp; i++) {
+            for (int i = 1; i <= columnacomp; i++) {
                 if (tablero[fila][columna - i].equals(BGB + "    ")
                         || tablero[fila][columna - i].equals(BGN + "    ")) {
                     continuar = true;
@@ -475,7 +476,7 @@ public class prueba {
             }
         } else {
             columnacomp = columna2 - columna;
-            for (int i = 1; i < columnacomp; i++) {
+            for (int i = 1; i <= columnacomp; i++) {
                 if (tablero[fila][columna + i].equals(BGB + "    ")
                         || tablero[fila][columna + i].equals(BGN + "    ")) {
                     continuar = true;
