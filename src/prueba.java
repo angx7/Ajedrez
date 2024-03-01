@@ -4,20 +4,20 @@ public class prueba {
     // Declaración de variables globales
     static Scanner sc = new Scanner(System.in);
     static String pieza;
-    static String PeonN = " p ";
-    static String PeonB = " P ";
-    static String TorreN = " t ";
-    static String TorreB = " T ";
-    static String CaballoN = " c ";
-    static String CaballoB = " C ";
-    static String AlfilN = " a ";
-    static String AlfilB = " A ";
-    static String DamaN = " d ";
-    static String DamaB = " D ";
-    static String ReyN = " r ";
-    static String ReyB = " R ";
-    static String BGB = "\u001B[47m" + "\u001B[35m";
-    static String BGN = "\u001B[40m" + "\u001B[35m";
+    static String PeonN = " \u265F  ";
+    static String PeonB = " \u2659  ";
+    static String TorreN = " \u265C  ";
+    static String TorreB = " \u2656  ";
+    static String CaballoN = " \u265E  ";
+    static String CaballoB = " \u2658  ";
+    static String AlfilN = " \u265D  ";
+    static String AlfilB = " \u2657  ";
+    static String DamaN = " \u265B  ";
+    static String DamaB = " \u2655  ";
+    static String ReyN = " \u265A  ";
+    static String ReyB = " \u2654  ";
+    static String BGB = "\u001B[47m" + "\u001B[30m";
+    static String BGN = "\u001B[46m" + "\u001B[30m";
     static String BG = "\u001B[0m";
     static String[][] tablero = CrearTablero();
 
@@ -109,6 +109,7 @@ public class prueba {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toLowerCase();
         pieza = sc.nextLine().toLowerCase();
+        pieza = bibliotecaR(pieza);
         System.out.println(pieza);
         System.out.println("Columna: ");
         String columnas = sc.nextLine().toUpperCase();
@@ -145,17 +146,34 @@ public class prueba {
 
         String comp = tablero[fila][columna];
         // Obtenemos "color de la casilla y la letra de la pieza"
-        String pieza2 = bibliotecar(pieza);
         // Obtenemos " p "
         String pz = BibliotecaR(pieza);
         // Obtenermos "PeonN"
-        String concatenarN1 = BGB + pieza2;
-        String concatenarN2 = BGN + pieza2;
+        String concatenarN1 = BGB + pieza;
+        String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza2, turnoBlancas, pz);
+            return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
         } else {
             System.out.println("No puedes mover esta pieza");
             return false;
+        }
+    }
+
+    private static String bibliotecaR(String pieza2) {
+        if (pieza2.equals("p")) {
+            return " \u265F  ";
+        } else if (pieza2.equals("t")) {
+            return " \u265C  ";
+        } else if (pieza2.equals("c")) {
+            return " \u265E  ";
+        } else if (pieza2.equals("a")) {
+            return " \u265D  ";
+        } else if (pieza2.equals("d")) {
+            return " \u265B  ";
+        } else if (pieza2.equals("r")) {
+            return " \u265A  ";
+        } else {
+            return "   ";
         }
     }
 
@@ -166,11 +184,11 @@ public class prueba {
         if (!turnoBlancas && pz.contains("N")) { // Si es el turno de las blancas y la pieza es blanca
             pieza = tablero[fila][columna];
             if (pieza.equals(BGB + pieza2)) {
-                tablero[fila][columna] = BGB + "   ";
+                tablero[fila][columna] = BGB + "    ";
                 String pieza3 = tablero[fila2][columna2];
-                if (pieza3.equals(BGN + "   ")) {
+                if (pieza3.equals(BGN + "    ")) {
                     tablero[fila2][columna2] = BGN + pieza2;
-                } else if (pieza3.equals(BGB + "   ")) {
+                } else if (pieza3.equals(BGB + "    ")) {
                     tablero[fila2][columna2] = BGB + pieza2;
 
                 } else {
@@ -179,11 +197,11 @@ public class prueba {
                 }
 
             } else if (pieza.equals(BGN + pieza2)) {
-                tablero[fila][columna] = BGN + "   ";
+                tablero[fila][columna] = BGN + "    ";
                 String pieza3 = tablero[fila2][columna2];
-                if (pieza3.equals(BGN + "   ")) {
+                if (pieza3.equals(BGN + "    ")) {
                     tablero[fila2][columna2] = BGN + pieza2;
-                } else if (pieza3.equals(BGB + "   ")) {
+                } else if (pieza3.equals(BGB + "    ")) {
                     tablero[fila2][columna2] = BGB + pieza2;
 
                 } else {
@@ -205,39 +223,20 @@ public class prueba {
     }
 
     private static String BibliotecaR(String pieza2) {
-        if (pieza2.equals("p")) {
+        if (pieza2.equals(" \u265F  ")) {
             return "PeonN";
-        } else if (pieza2.equals("t")) {
+        } else if (pieza2.equals(" \u265C  ")) {
             return "TorreN";
-        } else if (pieza2.equals("c")) {
+        } else if (pieza2.equals(" \u265E  ")) {
             return "CaballoN";
-        } else if (pieza2.equals("a")) {
+        } else if (pieza2.equals(" \u265D  ")) {
             return "AlfilN";
-        } else if (pieza2.equals("d")) {
+        } else if (pieza2.equals(" \u265B  ")) {
             return "DamaN";
-        } else if (pieza2.equals("r")) {
+        } else if (pieza2.equals(" \u265A  ")) {
             return "ReyN";
         } else {
             return "   ";
-        }
-    }
-
-    private static String bibliotecar(String pieza2) {
-        if (pieza2.equals("p")) {
-            return PeonN;
-        } else if (pieza2.equals("t")) {
-            return TorreN;
-        } else if (pieza2.equals("c")) {
-            return CaballoN;
-        } else if (pieza2.equals("a")) {
-            return AlfilN;
-        } else if (pieza2.equals("d")) {
-            return DamaN;
-        } else if (pieza2.equals("r")) {
-            return ReyN;
-        } else {
-            return "   ";
-
         }
     }
 
@@ -246,6 +245,7 @@ public class prueba {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
+        pieza = bibliotecaB(pieza);
         System.out.println(pieza);
         System.out.println("Columna: ");
         String columnas = sc.nextLine().toUpperCase();
@@ -282,18 +282,33 @@ public class prueba {
         int fila2 = NuevaPos(Integer.parseInt(filas2));
 
         String comp = tablero[fila][columna];
-        // Obtenemos "color de la casilla y la letra de la pieza"
-        String pieza2 = bibliotecab(pieza);
-        // Obtenemos " p "
         String pz = BibliotecaB(pieza);
-        // Obtenermos "PeonN"
-        String concatenarN1 = BGB + pieza2;
-        String concatenarN2 = BGN + pieza2;
+        // Obtenermos "PeonB"
+        String concatenarN1 = BGB + pieza;
+        String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza2, turnoBlancas, pz);
+            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
         } else {
             System.out.println("No puedes mover esta pieza");
             return false;
+        }
+    }
+
+    private static String bibliotecaB(String pieza2) {
+        if (pieza2.equals("P")) {
+            return " \u2659  ";
+        } else if (pieza2.equals("T")) {
+            return " \u2656  ";
+        } else if (pieza2.equals("C")) {
+            return " \u2658  ";
+        } else if (pieza2.equals("A")) {
+            return " \u2657  ";
+        } else if (pieza2.equals("D")) {
+            return " \u2655  ";
+        } else if (pieza2.equals("R")) {
+            return " \u2654  ";
+        } else {
+            return "   ";
         }
     }
 
@@ -348,36 +363,18 @@ public class prueba {
     }
 
     private static String BibliotecaB(String pz) {
-        if (pz.equals("P")) {
+        if (pz.equals(" \u2659  ")) {
             return "PeonB";
-        } else if (pz.equals("T")) {
+        } else if (pz.equals(" \u2656  ")) {
             return "TorreB";
-        } else if (pz.equals("C")) {
+        } else if (pz.equals(" \u2658  ")) {
             return "CaballoB";
-        } else if (pz.equals("A")) {
+        } else if (pz.equals(" \u2657  ")) {
             return "AlfilB";
-        } else if (pz.equals("D")) {
+        } else if (pz.equals(" \u2655  ")) {
             return "DamaB";
-        } else if (pz.equals("R")) {
+        } else if (pz.equals(" \u2654  ")) {
             return "ReyB";
-        } else {
-            return "   ";
-        }
-    }
-
-    private static String bibliotecab(String pieza2) {
-        if (pieza2.equals("P")) {
-            return PeonB;
-        } else if (pieza2.equals("T")) {
-            return TorreB;
-        } else if (pieza2.equals("C")) {
-            return CaballoB;
-        } else if (pieza2.equals("A")) {
-            return AlfilB;
-        } else if (pieza2.equals("D")) {
-            return DamaB;
-        } else if (pieza2.equals("R")) {
-            return ReyB;
         } else {
             return "   ";
         }
@@ -390,11 +387,11 @@ public class prueba {
         if (turnoBlancas && pz.contains("B")) { // Si es el turno de las blancas y la pieza es blanca
             pieza = tablero[fila][columna];
             if (pieza.equals(BGB + pieza2)) {
-                tablero[fila][columna] = BGB + "   ";
+                tablero[fila][columna] = BGB + "    ";
                 String pieza3 = tablero[fila2][columna2];
-                if (pieza3.equals(BGN + "   ")) {
+                if (pieza3.equals(BGN + "    ")) {
                     tablero[fila2][columna2] = BGN + pieza2;
-                } else if (pieza3.equals(BGB + "   ")) {
+                } else if (pieza3.equals(BGB + "    ")) {
                     tablero[fila2][columna2] = BGB + pieza2;
 
                 } else {
@@ -403,11 +400,11 @@ public class prueba {
                 }
 
             } else if (pieza.equals(BGN + pieza2)) {
-                tablero[fila][columna] = BGN + "   ";
+                tablero[fila][columna] = BGN + "    ";
                 String pieza3 = tablero[fila2][columna2];
-                if (pieza3.equals(BGN + "   ")) {
+                if (pieza3.equals(BGN + "    ")) {
                     tablero[fila2][columna2] = BGN + pieza2;
-                } else if (pieza3.equals(BGB + "   ")) {
+                } else if (pieza3.equals(BGB + "    ")) {
                     tablero[fila2][columna2] = BGB + pieza2;
 
                 } else {
@@ -464,47 +461,47 @@ public class prueba {
         tablero[1][9] = BG;
 
         tablero[2][0] = " 6 ";
-        tablero[2][1] = BGB + "   ";
-        tablero[2][2] = BGN + "   ";
-        tablero[2][3] = BGB + "   ";
-        tablero[2][4] = BGN + "   ";
-        tablero[2][5] = BGB + "   ";
-        tablero[2][6] = BGN + "   ";
-        tablero[2][7] = BGB + "   ";
-        tablero[2][8] = BGN + "   ";
+        tablero[2][1] = BGB + "    ";
+        tablero[2][2] = BGN + "    ";
+        tablero[2][3] = BGB + "    ";
+        tablero[2][4] = BGN + "    ";
+        tablero[2][5] = BGB + "    ";
+        tablero[2][6] = BGN + "    ";
+        tablero[2][7] = BGB + "    ";
+        tablero[2][8] = BGN + "    ";
         tablero[2][9] = BG;
 
         tablero[3][0] = " 5 ";
-        tablero[3][1] = BGN + "   ";
-        tablero[3][2] = BGB + "   ";
-        tablero[3][3] = BGN + "   ";
-        tablero[3][4] = BGB + "   ";
-        tablero[3][5] = BGN + "   ";
-        tablero[3][6] = BGB + "   ";
-        tablero[3][7] = BGN + "   ";
-        tablero[3][8] = BGB + "   ";
+        tablero[3][1] = BGN + "    ";
+        tablero[3][2] = BGB + "    ";
+        tablero[3][3] = BGN + "    ";
+        tablero[3][4] = BGB + "    ";
+        tablero[3][5] = BGN + "    ";
+        tablero[3][6] = BGB + "    ";
+        tablero[3][7] = BGN + "    ";
+        tablero[3][8] = BGB + "    ";
         tablero[3][9] = BG;
 
         tablero[4][0] = " 4 ";
-        tablero[4][1] = BGB + "   ";
-        tablero[4][2] = BGN + "   ";
-        tablero[4][3] = BGB + "   ";
-        tablero[4][4] = BGN + "   ";
-        tablero[4][5] = BGB + "   ";
-        tablero[4][6] = BGN + "   ";
-        tablero[4][7] = BGB + "   ";
-        tablero[4][8] = BGN + "   ";
+        tablero[4][1] = BGB + "    ";
+        tablero[4][2] = BGN + "    ";
+        tablero[4][3] = BGB + "    ";
+        tablero[4][4] = BGN + "    ";
+        tablero[4][5] = BGB + "    ";
+        tablero[4][6] = BGN + "    ";
+        tablero[4][7] = BGB + "    ";
+        tablero[4][8] = BGN + "    ";
         tablero[4][9] = BG;
 
         tablero[5][0] = " 3 ";
-        tablero[5][1] = BGN + "   ";
-        tablero[5][2] = BGB + "   ";
-        tablero[5][3] = BGN + "   ";
-        tablero[5][4] = BGB + "   ";
-        tablero[5][5] = BGN + "   ";
-        tablero[5][6] = BGB + "   ";
-        tablero[5][7] = BGN + "   ";
-        tablero[5][8] = BGB + "   ";
+        tablero[5][1] = BGN + "    ";
+        tablero[5][2] = BGB + "    ";
+        tablero[5][3] = BGN + "    ";
+        tablero[5][4] = BGB + "    ";
+        tablero[5][5] = BGN + "    ";
+        tablero[5][6] = BGB + "    ";
+        tablero[5][7] = BGN + "    ";
+        tablero[5][8] = BGB + "    ";
         tablero[5][9] = BG;
 
         tablero[6][0] = " 2 ";
@@ -529,16 +526,16 @@ public class prueba {
         tablero[7][8] = BGB + TorreB;
         tablero[7][9] = BG;
 
-        tablero[8][0] = "   ";
-        tablero[8][1] = " A ";
-        tablero[8][2] = " B ";
-        tablero[8][3] = " C ";
-        tablero[8][4] = " D ";
-        tablero[8][5] = " E ";
-        tablero[8][6] = " F ";
-        tablero[8][7] = " G ";
-        tablero[8][8] = " H ";
-        tablero[8][9] = "   ";
+        tablero[8][0] = "    ";
+        tablero[8][1] = " A  ";
+        tablero[8][2] = " B  ";
+        tablero[8][3] = " C  ";
+        tablero[8][4] = " D  ";
+        tablero[8][5] = " E  ";
+        tablero[8][6] = " F  ";
+        tablero[8][7] = " G  ";
+        tablero[8][8] = " H  ";
+        tablero[8][9] = "    ";
 
         return tablero;
     }
