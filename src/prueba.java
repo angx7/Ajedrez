@@ -340,8 +340,8 @@ public class prueba {
         if (filacomp > 0 && columnacomp > 0) {
             for (int i = 1; i < filacomp; i++) {
                 for (int j = 1; j < columnacomp; j++) {
-                    if (tablero[fila + i][columna + j].equals(BGB + "    ")
-                            || tablero[fila + i][columna + j].equals(BGN + "    ")) {
+                    if (tablero[fila - i][columna + j].equals(BGB + "    ")
+                            || tablero[fila - i][columna + j].equals(BGN + "    ")) {
                         continuar = true;
                     } else {
                         System.out.println("No se puede mover a esa posición");
