@@ -23,6 +23,7 @@ public class prueba {
 
     // Método principal
     public static void main(String[] args) {
+        limpiarConsola();
         ImprimirTablero(tablero);
         Menu();
     }
@@ -42,6 +43,26 @@ public class prueba {
             return false;
         }
 
+    }
+
+    // Método para válidar solo letras
+    public static char Esletra() {
+        char inputChar;
+        while (true) {
+            String userInput = sc.next().toLowerCase();
+            if (userInput.length() == 1 && Character.isLetter(userInput.charAt(0))) {
+                inputChar = userInput.charAt(0);
+                break;
+            } else {
+                System.out.print("\u001B[31mEs una entrada inválida.\nIntente de nuevo: \u001B[37m");
+            }
+        }
+        return inputChar;
+    }
+
+    private static void limpiarConsola() {
+        System.out.print("\033[2J");
+        System.out.print("\033[H");
     }
 
     // Método para el menú
@@ -106,6 +127,8 @@ public class prueba {
 
     // Método para elegir una pieza
     private static boolean ElegirPiezaR(String[][] tablero2, boolean turnoBlancas) {
+        limpiarConsola();
+        ImprimirTablero(tablero);
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toLowerCase();
         pieza = sc.nextLine().toLowerCase();
@@ -245,7 +268,8 @@ public class prueba {
     }
 
     private static boolean ElegirPieza(String[][] tablero, boolean turnoBlancas) {
-
+        limpiarConsola();
+        ImprimirTablero(tablero);
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
@@ -294,9 +318,11 @@ public class prueba {
 
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
-            boolean ValidarD = false;
+            boolean ValidarD;
             if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB)) {
                 ValidarD = ValidarD(tablero, fila, columna, fila2, columna2);
+            }else{
+                ValidarD = false;
             }
             if (Validartyp == true || ValidarD == true) {
                 return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
@@ -633,6 +659,9 @@ public class prueba {
             }
             System.out.println();
         }
+
+        System.out.println(
+                "\n P = \u2659 (Peón) \t T = \u2656 (Torre) \t C = \u2658 (Caballo) \n A = \u2657 (Alfil) \t D = \u2655 (Dama) \t R = \u2654 (Rey) \n");
     }
 
     private static String[][] CrearTablero() {
