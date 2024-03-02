@@ -42,22 +42,19 @@ public class prueba {
         } catch (Exception e) {
             return false;
         }
-
     }
 
-    // Método para válidar solo letras
-    public static char Esletra() {
-        char inputChar;
-        while (true) {
-            String userInput = sc.next().toLowerCase();
-            if (userInput.length() == 1 && Character.isLetter(userInput.charAt(0))) {
-                inputChar = userInput.charAt(0);
-                break;
-            } else {
-                System.out.print("\u001B[31mEs una entrada inválida.\nIntente de nuevo: \u001B[37m");
-            }
+    // Método para validar que el usuario ingresó una pieza válida
+    public static boolean validarPiezaSeleccionada(String pieza) {
+        String piezasPermitidasBlancas = "PATDCR";
+        String piezasPermitidasNegras = "patdcr";
+        if( piezasPermitidasBlancas.contains(pieza.toUpperCase())) {
+            return true;
+        } else if (piezasPermitidasNegras.contains(pieza.toLowerCase())) {
+            return true;
+        } else {
+            return false;
         }
-        return inputChar;
     }
 
     private static void limpiarConsola() {
@@ -132,6 +129,10 @@ public class prueba {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toLowerCase();
         pieza = sc.nextLine().toLowerCase();
+        while (!validarPiezaSeleccionada(pieza)) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
+            pieza = sc.nextLine().toLowerCase();
+        }
         pieza = bibliotecaR(pieza);
         System.out.println(pieza);
         System.out.println("Columna: ");
@@ -281,6 +282,10 @@ public class prueba {
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
         pieza = sc.nextLine().toUpperCase();
+        while (!validarPiezaSeleccionada(pieza)) {
+            System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
+            pieza = sc.nextLine().toUpperCase();
+        }
         pieza = bibliotecaB(pieza);
         System.out.println(pieza);
         System.out.println("Columna: ");
