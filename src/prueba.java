@@ -319,6 +319,7 @@ public class prueba {
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
             boolean ValidarD = true;
+<<<<<<< HEAD
             if (pieza.equals(CaballoB)){
                 if(ValidarCaballo(fila, columna, fila2, columna2)){
                     return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
@@ -328,8 +329,11 @@ public class prueba {
                 }
             }
             if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB) || pieza.equals(PeonB)) { // BORRAR PEONB
+=======
+            if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB)) {
+>>>>>>> 8da7ff68aae846a602623f7fd1e1ca9a7246a296
                 ValidarD = ValidarD(tablero, fila, columna, fila2, columna2);
-            }else{
+            } else {
                 ValidarD = false;
             }
             if (Validartyp == true || ValidarD == true) {
@@ -344,7 +348,7 @@ public class prueba {
         int filacomp = (fila2 - fila) * -1;
         int columnacomp = columna2 - columna;
         boolean continuar = false;
-            // ARRIBA DERECHA   
+        // ARRIBA DERECHA (BIEN)
         if (filacomp > 0 && columnacomp > 0) {
             for (int i = 1; i <= filacomp; i++) {
                 for (int j = 1; j <= columnacomp; j++) {
@@ -359,7 +363,7 @@ public class prueba {
             }
             // ABAJO IZQUIERDA
         } else if (filacomp < 0 && columnacomp < 0) {
-            filacomp = fila2 - fila; //  3
+            filacomp = fila2 - fila; // 3
             columnacomp = columna - columna2; // 3
             for (int i = 1; i <= filacomp; i++) {
                 for (int j = 1; j <= columnacomp; j++) {
@@ -372,7 +376,7 @@ public class prueba {
                     }
                 }
             }
-            // ARRIBA IZQUIERDA
+            // ARRIBA IZQUIERDA (BIEN)
         } else if (filacomp > 0 && columnacomp < 0) {
             columnacomp = columna - columna2; // 2
             for (int i = 1; i <= filacomp; i++) {
@@ -386,7 +390,7 @@ public class prueba {
                     }
                 }
             }
-            //ABAJO DERECHA
+            // ABAJO DERECHA
         } else if (filacomp < 0 && columnacomp > 0) {
             filacomp = fila2 - fila; // f1= 3, f2 = 6 filacomp = 3
             for (int i = 1; i <= filacomp; i++) {
