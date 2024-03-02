@@ -318,8 +318,8 @@ public class prueba {
 
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
-            boolean ValidarD;
-            if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB)) {
+            boolean ValidarD = true;
+            if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB) || pieza.equals(PeonB)) { // BORRAR PEONB
                 ValidarD = ValidarD(tablero, fila, columna, fila2, columna2);
             }else{
                 ValidarD = false;
@@ -336,10 +336,10 @@ public class prueba {
         int filacomp = (fila2 - fila) * -1;
         int columnacomp = columna2 - columna;
         boolean continuar = false;
-
+            // ARRIBA DERECHA   
         if (filacomp > 0 && columnacomp > 0) {
-            for (int i = 1; i < filacomp; i++) {
-                for (int j = 1; j < columnacomp; j++) {
+            for (int i = 1; i <= filacomp; i++) {
+                for (int j = 1; j <= columnacomp; j++) {
                     if (tablero[fila - i][columna + j].equals(BGB + "    ")
                             || tablero[fila - i][columna + j].equals(BGN + "    ")) {
                         continuar = true;
@@ -349,24 +349,12 @@ public class prueba {
                     }
                 }
             }
+            // ABAJO IZQUIERDA
         } else if (filacomp < 0 && columnacomp < 0) {
-            filacomp = fila - fila2; // 2
-            columnacomp = columna - columna2;
-            for (int i = 1; i < filacomp; i++) {
-                for (int j = 1; j < columnacomp; j++) {
-                    if (tablero[fila - i][columna - j].equals(BGB + "    ")
-                            || tablero[fila - i][columna - j].equals(BGN + "    ")) {
-                        continuar = true;
-                    } else {
-                        System.out.println("No se puede mover a esa posición");
-                        return false;
-                    }
-                }
-            }
-        } else if (filacomp > 0 && columnacomp < 0) {
-            columnacomp = columna - columna2;
-            for (int i = 1; i < filacomp; i++) {
-                for (int j = 1; j < columnacomp; j++) {
+            filacomp = fila2 - fila; //  3
+            columnacomp = columna - columna2; // 3
+            for (int i = 1; i <= filacomp; i++) {
+                for (int j = 1; j <= columnacomp; j++) {
                     if (tablero[fila + i][columna - j].equals(BGB + "    ")
                             || tablero[fila + i][columna - j].equals(BGN + "    ")) {
                         continuar = true;
@@ -376,12 +364,27 @@ public class prueba {
                     }
                 }
             }
+            // ARRIBA IZQUIERDA
+        } else if (filacomp > 0 && columnacomp < 0) {
+            columnacomp = columna - columna2; // 2
+            for (int i = 1; i <= filacomp; i++) {
+                for (int j = 1; j <= columnacomp; j++) {
+                    if (tablero[fila - i][columna - j].equals(BGB + "    ")
+                            || tablero[fila - i][columna - j].equals(BGN + "    ")) {
+                        continuar = true;
+                    } else {
+                        System.out.println("No se puede mover a esa posición");
+                        return false;
+                    }
+                }
+            }
+            //ABAJO DERECHA
         } else if (filacomp < 0 && columnacomp > 0) {
-            filacomp = fila - fila2;
-            for (int i = 1; i < filacomp; i++) {
-                for (int j = 1; j < columnacomp; j++) {
-                    if (tablero[fila - i][columna + j].equals(BGB + "    ")
-                            || tablero[fila - i][columna + j].equals(BGN + "    ")) {
+            filacomp = fila2 - fila; // f1= 3, f2 = 6 filacomp = 3
+            for (int i = 1; i <= filacomp; i++) {
+                for (int j = 1; j <= columnacomp; j++) {
+                    if (tablero[fila + i][columna + j].equals(BGB + "    ")
+                            || tablero[fila + i][columna + j].equals(BGN + "    ")) {
                         continuar = true;
                     } else {
                         System.out.println("No se puede mover a esa posición");
