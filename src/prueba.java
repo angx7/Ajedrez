@@ -178,7 +178,7 @@ public class prueba {
             boolean Validartyp = ValidarTyPR(tablero, fila, columna, columna2, fila2);
             if (pieza.equals(CaballoN)){
                 if(ValidarCaballo(fila2, columna2, fila, columna)){
-                    return MoverPiezaR(tablero2, fila, columna, fila2, columna2, concatenarN2, turnoBlancas, pz);
+                    return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
                 }else{
                     System.out.println("El caballo no se puede mover a esa posición");
                     return false;
