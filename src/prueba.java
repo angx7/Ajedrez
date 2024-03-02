@@ -176,6 +176,14 @@ public class prueba {
         String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyPR(tablero, fila, columna, columna2, fila2);
+            if (pieza.equals(CaballoN)){
+                if(ValidarCaballo(fila2, columna2, fila, columna)){
+                    return MoverPiezaR(tablero2, fila, columna, fila2, columna2, concatenarN2, turnoBlancas, pz);
+                }else{
+                    System.out.println("El caballo no se puede mover a esa posición");
+                    return false;
+                }
+            }
             if (Validartyp == true) {
                 return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
             }
@@ -319,7 +327,6 @@ public class prueba {
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
             boolean ValidarD = true;
-<<<<<<< HEAD
             if (pieza.equals(CaballoB)){
                 if(ValidarCaballo(fila, columna, fila2, columna2)){
                     return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
@@ -329,11 +336,8 @@ public class prueba {
                 }
             }
             if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB) || pieza.equals(PeonB)) { // BORRAR PEONB
-=======
-            if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB)) {
->>>>>>> 8da7ff68aae846a602623f7fd1e1ca9a7246a296
                 ValidarD = ValidarD(tablero, fila, columna, fila2, columna2);
-            } else {
+            }else{
                 ValidarD = false;
             }
             if (Validartyp == true || ValidarD == true) {
@@ -348,7 +352,7 @@ public class prueba {
         int filacomp = (fila2 - fila) * -1;
         int columnacomp = columna2 - columna;
         boolean continuar = false;
-        // ARRIBA DERECHA (BIEN)
+            // ARRIBA DERECHA   
         if (filacomp > 0 && columnacomp > 0) {
             for (int i = 1; i <= filacomp; i++) {
                 for (int j = 1; j <= columnacomp; j++) {
@@ -363,7 +367,7 @@ public class prueba {
             }
             // ABAJO IZQUIERDA
         } else if (filacomp < 0 && columnacomp < 0) {
-            filacomp = fila2 - fila; // 3
+            filacomp = fila2 - fila; //  3
             columnacomp = columna - columna2; // 3
             for (int i = 1; i <= filacomp; i++) {
                 for (int j = 1; j <= columnacomp; j++) {
@@ -376,7 +380,7 @@ public class prueba {
                     }
                 }
             }
-            // ARRIBA IZQUIERDA (BIEN)
+            // ARRIBA IZQUIERDA
         } else if (filacomp > 0 && columnacomp < 0) {
             columnacomp = columna - columna2; // 2
             for (int i = 1; i <= filacomp; i++) {
@@ -390,7 +394,7 @@ public class prueba {
                     }
                 }
             }
-            // ABAJO DERECHA
+            //ABAJO DERECHA
         } else if (filacomp < 0 && columnacomp > 0) {
             filacomp = fila2 - fila; // f1= 3, f2 = 6 filacomp = 3
             for (int i = 1; i <= filacomp; i++) {
@@ -473,15 +477,10 @@ public class prueba {
             return false;
         }
     }
-
     private static boolean ValidarCaballo(int fila, int columna, int fila2, int columna2) {
-        // Calcular la diferencia en X y Y entre el origen y el destino
-        int diffX = Math.abs(fila - fila2);
-        int diffY = Math.abs(columna - columna2);
-    
-        // El movimiento es válido si la diferencia en X es 2 y la diferencia en Y es 1,
-        // o si la diferencia en X es 1 y la diferencia en Y es 2
-        return (diffX == 2 && diffY == 1) || (diffX == 1 && diffY == 2);
+        int difFil = Math.abs(fila - fila2);
+        int difCol = Math.abs(columna - columna2);
+        return (difFil == 2 && difCol == 1) || (difFil == 1 && difCol == 2);
     }
 
     private static boolean ValidarTyPR(String[][] tablero2, int fila, int columna, int columna2,
@@ -794,3 +793,4 @@ public class prueba {
         return tablero;
     }
 }
+
