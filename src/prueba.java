@@ -319,6 +319,14 @@ public class prueba {
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
             boolean ValidarD = true;
+            if (pieza.equals(CaballoB)){
+                if(ValidarCaballo(fila, columna, fila2, columna2)){
+                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                }else{
+                    System.out.println("El caballo no se puede mover a esa posición");
+                    return false;
+                }
+            }
             if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB) || pieza.equals(PeonB)) { // BORRAR PEONB
                 ValidarD = ValidarD(tablero, fila, columna, fila2, columna2);
             }else{
@@ -460,6 +468,16 @@ public class prueba {
         } else {
             return false;
         }
+    }
+
+    private static boolean ValidarCaballo(int fila, int columna, int fila2, int columna2) {
+        // Calcular la diferencia en X y Y entre el origen y el destino
+        int diffX = Math.abs(fila - fila2);
+        int diffY = Math.abs(columna - columna2);
+    
+        // El movimiento es válido si la diferencia en X es 2 y la diferencia en Y es 1,
+        // o si la diferencia en X es 1 y la diferencia en Y es 2
+        return (diffX == 2 && diffY == 1) || (diffX == 1 && diffY == 2);
     }
 
     private static boolean ValidarTyPR(String[][] tablero2, int fila, int columna, int columna2,
