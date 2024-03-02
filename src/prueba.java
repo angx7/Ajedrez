@@ -327,6 +327,14 @@ public class prueba {
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
             boolean ValidarD = true;
+           if(pieza.equals(AlfilB)){
+            if(esMovimientoValido(fila, columna, fila2, columna2, tablero)){
+                return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+           }else{
+                System.out.println("El alfil no se puede mover a esa posición");
+                return false;
+           }
+        }
             if (pieza.equals(CaballoB)){
                 if(ValidarCaballo(fila, columna, fila2, columna2)){
                     return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
@@ -415,6 +423,39 @@ public class prueba {
             return false;
         }
     }
+    
+    private static boolean esMovimientoValido(int fila, int columna, int fila2, int columna2, String[][] tablero) {
+        // Calcular la diferencia en X y Y entre el origen y el destino
+        int diffX = Math.abs(fila - fila2);
+        int diffY = Math.abs(columna - columna2);
+    
+        // El movimiento es válido si la diferencia en X es igual a la diferencia en Y
+        if (diffX != diffY) {
+            return false;
+        }
+    
+        // Determinar la dirección del movimiento
+        int dirX = (fila2 - fila) / diffX;
+        int dirY = (columna2 - columna) / diffY;
+    
+        // Comprobar cada casilla en la diagonal
+        for (int i = 1; i <= diffX; i++) {
+            int x = fila + i * dirX;
+            int y = columna + i * dirY;
+    
+            // Si la casilla no está vacía, el movimiento no es válido
+            if (tablero[x][y].equals(BGB + "    ")|| tablero[x][y].equals(BGN + "    ")){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    
+        // Si todas las casillas en la diagonal están vacías, el movimiento es válido
+        return true;
+    }
+
+
 
     // TORRES Y PEONES
     private static boolean ValidarTyP(String[][] tablero2, int fila, int columna, int columna2,
