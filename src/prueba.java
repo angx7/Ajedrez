@@ -176,10 +176,10 @@ public class prueba {
         String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyPR(tablero, fila, columna, columna2, fila2);
-            if (pieza.equals(CaballoN)){
-                if(ValidarCaballo(fila2, columna2, fila, columna)){
+            if (pieza.equals(CaballoN)) {
+                if (ValidarCaballo(fila2, columna2, fila, columna)) {
                     return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                }else{
+                } else {
                     System.out.println("El caballo no se puede mover a esa posición");
                     return false;
                 }
@@ -327,25 +327,26 @@ public class prueba {
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
             boolean ValidarD = true;
-           if(pieza.equals(AlfilB)){
-            if(esMovimientoValido(fila, columna, fila2, columna2, tablero)){
-                return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-           }else{
-                System.out.println("El alfil no se puede mover a esa posición");
-                return false;
-           }
-        }
-            if (pieza.equals(CaballoB)){
-                if(ValidarCaballo(fila, columna, fila2, columna2)){
+            if (pieza.equals(AlfilB)) {
+                if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
                     return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                }else{
+                } else {
+                    System.out.println("El alfil no se puede mover a esa posición");
+                    return false;
+                }
+            }
+            if (pieza.equals(CaballoB)) {
+                if (ValidarCaballo(fila, columna, fila2, columna2)) {
+                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                } else {
                     System.out.println("El caballo no se puede mover a esa posición");
                     return false;
                 }
             }
-            if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB) || pieza.equals(PeonB)) { // BORRAR PEONB
+            if (pieza.equals(ReyB) || pieza.equals(DamaB) || pieza.equals(AlfilB) || pieza.equals(PeonB)) { // BORRAR
+                                                                                                            // PEONB
                 ValidarD = ValidarD(tablero, fila, columna, fila2, columna2);
-            }else{
+            } else {
                 ValidarD = false;
             }
             if (Validartyp == true || ValidarD == true) {
@@ -360,7 +361,7 @@ public class prueba {
         int filacomp = (fila2 - fila) * -1;
         int columnacomp = columna2 - columna;
         boolean continuar = false;
-            // ARRIBA DERECHA   
+        // ARRIBA DERECHA
         if (filacomp > 0 && columnacomp > 0) {
             for (int i = 1; i <= filacomp; i++) {
                 for (int j = 1; j <= columnacomp; j++) {
@@ -375,7 +376,7 @@ public class prueba {
             }
             // ABAJO IZQUIERDA
         } else if (filacomp < 0 && columnacomp < 0) {
-            filacomp = fila2 - fila; //  3
+            filacomp = fila2 - fila; // 3
             columnacomp = columna - columna2; // 3
             for (int i = 1; i <= filacomp; i++) {
                 for (int j = 1; j <= columnacomp; j++) {
@@ -402,7 +403,7 @@ public class prueba {
                     }
                 }
             }
-            //ABAJO DERECHA
+            // ABAJO DERECHA
         } else if (filacomp < 0 && columnacomp > 0) {
             filacomp = fila2 - fila; // f1= 3, f2 = 6 filacomp = 3
             for (int i = 1; i <= filacomp; i++) {
@@ -423,39 +424,37 @@ public class prueba {
             return false;
         }
     }
-    
-    private static boolean esMovimientoValido(int fila, int columna, int fila2, int columna2, String[][] tablero) {
+
+    private static boolean MovimientoAlfil(int fila, int columna, int fila2, int columna2, String[][] tablero) {
         // Calcular la diferencia en X y Y entre el origen y el destino
         int diffX = Math.abs(fila - fila2);
         int diffY = Math.abs(columna - columna2);
-    
+
         // El movimiento es válido si la diferencia en X es igual a la diferencia en Y
         if (diffX != diffY) {
             return false;
         }
-    
+
         // Determinar la dirección del movimiento
         int dirX = (fila2 - fila) / diffX;
         int dirY = (columna2 - columna) / diffY;
-    
+
         // Comprobar cada casilla en la diagonal
-        for (int i = 1; i <= diffX; i++) {
+        for (int i = 1; i <= diffX;) {
             int x = fila + i * dirX;
             int y = columna + i * dirY;
-    
+
             // Si la casilla no está vacía, el movimiento no es válido
-            if (tablero[x][y].equals(BGB + "    ")|| tablero[x][y].equals(BGN + "    ")){
+            if (tablero[x][y].equals(BGB + "    ") || tablero[x][y].equals(BGN + "    ")) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
-    
+
         // Si todas las casillas en la diagonal están vacías, el movimiento es válido
         return true;
     }
-
-
 
     // TORRES Y PEONES
     private static boolean ValidarTyP(String[][] tablero2, int fila, int columna, int columna2,
@@ -518,6 +517,7 @@ public class prueba {
             return false;
         }
     }
+
     private static boolean ValidarCaballo(int fila, int columna, int fila2, int columna2) {
         int difFil = Math.abs(fila - fila2);
         int difCol = Math.abs(columna - columna2);
@@ -834,4 +834,3 @@ public class prueba {
         return tablero;
     }
 }
-
