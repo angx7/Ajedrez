@@ -48,7 +48,7 @@ public class prueba {
     public static boolean validarPiezaSeleccionada(String pieza) {
         String piezasPermitidasBlancas = "PATDCR";
         String piezasPermitidasNegras = "patdcr";
-        if( piezasPermitidasBlancas.contains(pieza.toUpperCase())) {
+        if (piezasPermitidasBlancas.contains(pieza.toUpperCase())) {
             return true;
         } else if (piezasPermitidasNegras.contains(pieza.toLowerCase())) {
             return true;
@@ -75,7 +75,23 @@ public class prueba {
                 System.out.println("1. Mover una pieza");
                 System.out.println("2. Salir");
                 System.out.println("Opción: ");
-                opcion = sc.nextInt();
+                String option = sc.nextLine();
+                while (!validarNumeros(option)) {
+                    System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+                    option = sc.next();
+                }
+                opcion = Integer.parseInt(option);
+                while (opcion <= 0 || opcion > 2) {
+                    System.out.println("Elige una opción válida: ");
+                    option = sc.next();
+                    while (!validarNumeros(option)) {
+                        System.out.print(
+                                "El valor ingresado no es un entero\n\nIntente nuevamente: ");
+                        option = sc.next();
+                    }
+                    opcion = Integer.parseInt(option);
+                }
+                // opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
                         ImprimirTablero(tablero);
@@ -84,13 +100,35 @@ public class prueba {
                             TBlancas = false;
                         }
                         break;
-                    case 2:
-                        finale = true;
-                        break;
                     default:
-                        System.out.println("Opción no válida");
+                        limpiarConsola();
+
+                        System.out.println("Seguro que desea cerrar el programa? (1. Si/2. No)");
+                        option = sc.nextLine();
+                        while (!validarNumeros(option)) {
+                            System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+                            option = sc.next();
+                        }
+                        opcion = Integer.parseInt(option);
+                        while (opcion <= 0 || opcion > 2) {
+                            System.out.println("Elige una opción válida: ");
+                            option = sc.next();
+                            while (!validarNumeros(option)) {
+                                System.out.print(
+                                        "El valor ingresado no es un entero\n\nIntente nuevamente: ");
+                                option = sc.next();
+                            }
+                            opcion = Integer.parseInt(option);
+                        }
+                        if (opcion == 1) {
+                            System.exit(0);
+                        } else {
+                            TBlancas = true;
+                        }
+                        sc.nextLine();
                         break;
                 }
+
             } while (TBlancas);
 
             do {
@@ -100,7 +138,24 @@ public class prueba {
                 System.out.println("1. Mover una pieza");
                 System.out.println("2. Salir");
                 System.out.println("Opción: ");
-                opcion = sc.nextInt();
+                String option = sc.nextLine();
+                while (!validarNumeros(option)) {
+                    System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+                    option = sc.next();
+                }
+                opcion = Integer.parseInt(option);
+                while (opcion <= 0 || opcion > 3) {
+                    System.out.println("Elige una opción válida\n\n");
+                    sc.nextLine();
+                    sc.nextLine();
+                    option = sc.next();
+                    while (!validarNumeros(option)) {
+                        System.out.print(
+                                "El valor ingresado no es un entero\n\nIntente nuevamente: ");
+                        option = sc.next();
+                    }
+                    opcion = Integer.parseInt(option);
+                }
                 switch (opcion) {
                     case 1:
                         ImprimirTablero(tablero);
@@ -109,11 +164,32 @@ public class prueba {
                             TNegras = true;
                         }
                         break;
-                    case 2:
-                        finale = true;
-                        break;
                     default:
-                        System.out.println("Opción no válida");
+                        limpiarConsola();
+
+                        System.out.println("Seguro que desea cerrar el programa? (1. Si/2. No)");
+                        option = sc.nextLine();
+                        while (!validarNumeros(option)) {
+                            System.out.println("\u001b[31mLa entrada no es válida, pon un número válido: \u001B[0m");
+                            option = sc.next();
+                        }
+                        opcion = Integer.parseInt(option);
+                        while (opcion <= 0 || opcion > 2) {
+                            System.out.println("Elige una opción válida: ");
+                            option = sc.next();
+                            while (!validarNumeros(option)) {
+                                System.out.print(
+                                        "El valor ingresado no es un entero\n\nIntente nuevamente: ");
+                                option = sc.next();
+                            }
+                            opcion = Integer.parseInt(option);
+                        }
+                        if (opcion == 1) {
+                            System.exit(0);
+                        } else {
+                            TNegras = false;
+                        }
+                        sc.nextLine();
                         break;
                 }
             } while (!TNegras);
@@ -127,7 +203,6 @@ public class prueba {
         limpiarConsola();
         ImprimirTablero(tablero);
         System.out.println("Elija la pieza que desea mover: ");
-        pieza = sc.nextLine().toLowerCase();
         pieza = sc.nextLine().toLowerCase();
         while (!validarPiezaSeleccionada(pieza)) {
             System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
@@ -177,6 +252,15 @@ public class prueba {
         String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyPR(tablero, fila, columna, columna2, fila2);
+            boolean ValidarD = true;
+            if (pieza.equals(AlfilN)) {
+                if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
+                    return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                } else {
+                    System.out.println("El alfil no se puede mover a esa posición");
+                    return false;
+                }
+            }
             if (pieza.equals(CaballoN)) {
                 if (ValidarCaballo(fila2, columna2, fila, columna)) {
                     return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
@@ -281,7 +365,7 @@ public class prueba {
         ImprimirTablero(tablero);
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
-        pieza = sc.nextLine().toUpperCase();
+        //pieza = sc.nextLine().toUpperCase();
         while (!validarPiezaSeleccionada(pieza)) {
             System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
             pieza = sc.nextLine().toUpperCase();
