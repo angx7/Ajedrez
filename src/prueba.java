@@ -413,38 +413,39 @@ public class prueba {
         String concatenarN2 = BGN + pieza;
 
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
-            if (pieza.equals(AlfilB)) {
-                if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
-                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                } else {
-                    System.out.println("El alfil no se puede mover a esa posición");
-                    return false;
-                }
+            switch (pieza) {
+                case " \u2657  ": // Alfil blanco
+                    if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El alfil no se puede mover a esa posición");
+                        return false;
+                    }
+                case " \u2658  ": // Caballo blanco
+                    if (ValidarCaballo(fila, columna, fila2, columna2)) {
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El caballo no se puede mover a esa posición");
+                        return false;
+                    }
+                case " \u2654  ": // Rey blanco
+                    if (ValidarRey(fila, columna, columna2, fila2)) {
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El rey no se puede mover a esa posición");
+                    }
+                default:
+                    boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
+
+                    if (Validartyp == true) {
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza,
+                                turnoBlancas, pz);
+                    }
+                    break;
             }
-            if (pieza.equals(CaballoB)) {
-                if (ValidarCaballo(fila, columna, fila2, columna2)) {
-                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                } else {
-                    System.out.println("El caballo no se puede mover a esa posición");
-                    return false;
-                }
-            }
-            if (pieza.equals(ReyB)) {
-                if (ValidarRey(fila, columna, columna2, fila2)) {
-                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-            } else {
-                System.out.println("El rey no se puede mover a esa posición");
-            }
-        }
-        if (Validartyp == true) {
-            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-        }
-        return false;
         }
         return false;
     }
-    
 
     private static boolean ValidarRey(int fila, int columna, int columna2, int fila2) {
         int difFil = Math.abs(fila - fila2);
