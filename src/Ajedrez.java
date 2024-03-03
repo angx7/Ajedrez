@@ -92,7 +92,6 @@ public class Ajedrez {
                     }
                     opcion = Integer.parseInt(option);
                 }
-                // opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
                         ImprimirTablero(tablero);
@@ -103,7 +102,6 @@ public class Ajedrez {
                         break;
                     default:
                         limpiarConsola();
-
                         System.out.println("Seguro que desea cerrar el programa? (1. Si/2. No)");
                         option = sc.nextLine();
                         while (!validarNumeros(option)) {
@@ -267,12 +265,8 @@ public class Ajedrez {
             filas2 = sc.next();
         }
         int fila2 = NuevaPos(Integer.parseInt(filas2));
-
         String comp = tablero[fila][columna];
-        // Obtenemos "color de la casilla y la letra de la pieza"
-        // Obtenemos " p "
         String pz = BibliotecaR(pieza);
-        // Obtenermos "PeonN"
         String concatenarN1 = BGB + pieza;
         String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
@@ -388,7 +382,6 @@ public class Ajedrez {
     private static boolean MoverPiezaR(String[][] tablero2, int fila, int columna, int fila2, int columna2,
             String pieza2, boolean turnoBlancas, String pz) {
         String pieza = tablero[fila][columna];
-        // String pz = BibliotecaB(pieza2);
         if (!turnoBlancas && pz.contains("N")) { // Si es el turno de las blancas y la pieza es blanca
             pieza = tablero[fila][columna];
             if (pieza.equals(BGB + pieza2)) {
@@ -398,7 +391,6 @@ public class Ajedrez {
                     tablero[fila2][columna2] = BGN + pieza2;
                 } else if (pieza3.equals(BGB + "    ")) {
                     tablero[fila2][columna2] = BGB + pieza2;
-
                 } else {
                     System.out.println("No se puede mover a esa posición");
                     return false;
@@ -453,7 +445,6 @@ public class Ajedrez {
         ImprimirTablero(tablero);
         System.out.println("Elija la pieza que desea mover: ");
         pieza = sc.nextLine().toUpperCase();
-        // pieza = sc.nextLine().toUpperCase();
         while (!validarPiezaSeleccionada(pieza)) {
             System.out.println("\u001b[31mLa entrada no es válida, pon una letra válida: \u001B[0m ");
             pieza = sc.nextLine().toUpperCase();
@@ -497,7 +488,6 @@ public class Ajedrez {
 
         String comp = tablero[fila][columna];
         String pz = BibliotecaB(pieza);
-        // Obtenermos "PeonB"
         String concatenarN1 = BGB + pieza;
         String concatenarN2 = BGN + pieza;
 
@@ -633,33 +623,22 @@ public class Ajedrez {
     }
 
     private static boolean MovimientoAlfil(int fila, int columna, int fila2, int columna2, String[][] tablero) {
-        // Calcular la diferencia en X y Y entre el origen y el destino
-        int diffX = Math.abs(fila - fila2);
-        int diffY = Math.abs(columna - columna2);
-
-        // El movimiento es válido si la diferencia en X es igual a la diferencia en Y
-        if (diffX != diffY) {
+        int difFil = Math.abs(fila - fila2);
+        int difCol = Math.abs(columna - columna2);
+        if (difFil != difCol) {
             return false;
         }
-
-        // Determinar la dirección del movimiento
-        int dirX = (fila2 - fila) / diffX;
-        int dirY = (columna2 - columna) / diffY;
-
-        // Comprobar cada casilla en la diagonal
-        for (int i = 1; i <= diffX;) {
-            int x = fila + i * dirX;
-            int y = columna + i * dirY;
-
-            // Si la casilla no está vacía, el movimiento no es válido
+        int dirFil = (fila2 - fila) / difFil;
+        int dirCol = (columna2 - columna) / difCol;
+        for (int i = 1; i <= difFil;) {
+            int x = fila + i * dirFil;
+            int y = columna + i * dirCol;
             if (tablero[x][y].equals(BGB + "    ") || tablero[x][y].equals(BGN + "    ")) {
                 return true;
             } else {
                 return false;
             }
         }
-
-        // Si todas las casillas en la diagonal están vacías, el movimiento es válido
         return true;
     }
 
@@ -758,7 +737,6 @@ public class Ajedrez {
     private static boolean MoverPieza(String[][] tablero, int fila, int columna, int fila2, int columna2, String pieza2,
             boolean turnoBlancas, String pz) {
         String pieza = tablero[fila][columna];
-        // String pz = BibliotecaB(pieza2);
         if (turnoBlancas && pz.contains("B")) { // Si es el turno de las blancas y la pieza es blanca
             pieza = tablero[fila][columna];
             if (pieza.equals(BGB + pieza2)) {
