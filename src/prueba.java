@@ -414,6 +414,7 @@ public class prueba {
 
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
             boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
+            
             if (pieza.equals(AlfilB)) {
                 if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
                     return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
@@ -433,18 +434,32 @@ public class prueba {
             if (pieza.equals(ReyB)) {
                 if (ValidarRey(fila, columna, columna2, fila2)) {
                     return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-            } else {
-                System.out.println("El rey no se puede mover a esa posición");
+                } else {
+                    System.out.println("El rey no se puede mover a esa posición");
+                }
             }
-        }
-        if (Validartyp == true) {
-            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-        }
-        return false;
+            if (Validartyp == true) {
+                if (pieza.equals(TorreB)) {
+                    if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("La torre no se puede mover a esa posición");
+                        return false;
+                    }
+                }
+
+            }
+            return false;
         }
         return false;
     }
-    
+
+    private static boolean MovimientoTorre(int fila, int columna, int fila2, int columna2, String[][] tablero2) {
+        if (fila == fila2) {
+
+        }
+        return false;
+    }
 
     private static boolean ValidarRey(int fila, int columna, int columna2, int fila2) {
         int difFil = Math.abs(fila - fila2);
