@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class prueba {
+public class Ajedrez {
     // Declaración de variables globales
     static Scanner sc = new Scanner(System.in);
     static String pieza;
