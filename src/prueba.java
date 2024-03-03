@@ -413,42 +413,67 @@ public class prueba {
         String concatenarN2 = BGN + pieza;
 
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            boolean Validartyp = ValidarTyP(tablero, fila, columna, columna2, fila2);
-            
-            if (pieza.equals(AlfilB)) {
-                if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
-                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                } else {
-                    System.out.println("El alfil no se puede mover a esa posición");
-                    return false;
-                }
-            }
-            if (pieza.equals(CaballoB)) {
-                if (ValidarCaballo(fila, columna, fila2, columna2)) {
-                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                } else {
-                    System.out.println("El caballo no se puede mover a esa posición");
-                    return false;
-                }
-            }
-            if (pieza.equals(ReyB)) {
-                if (ValidarRey(fila, columna, columna2, fila2)) {
-                    return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                } else {
-                    System.out.println("El rey no se puede mover a esa posición");
-                }
-            }
-            if (Validartyp == true) {
-                if (pieza.equals(TorreB)) {
-                    if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
+            switch (pieza) {
+                case " \u2657  ": // Alfil blanco
+                    if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
                         return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
                     } else {
-                        System.out.println("La torre no se puede mover a esa posición");
+                        System.out.println("El alfil no se puede mover a esa posición");
                         return false;
                     }
-                }
+                case " \u2658  ": // Caballo blanco
+                    if (ValidarCaballo(fila, columna, fila2, columna2)) {
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El caballo no se puede mover a esa posición");
+                        return false;
+                    }
+                case " \u2654  ": // Rey blanco
+                    if (ValidarRey(fila, columna, columna2, fila2)) {
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El rey no se puede mover a esa posición");
+                    }
+                case " \u2655  ": // Dama blanca
+                    break;
+                default:
+                    if (pieza.equals(TorreB)) {
+                        if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La torre no se puede mover a esa posición");
+                            return false;
 
+                        }
+                    } else if (pieza.equals(PeonB)) {
+                        if (MovimientoPeonB(fila, columna, fila2, columna2, tablero)) {
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("El peón no se puede mover a esa posición");
+                            return false;
+
+                        }
+                    }
             }
+            return false;
+        }
+        return false;
+    }
+
+    private static boolean MovimientoPeonB(int fila, int columna, int fila2, int columna2, String[][] tablero2) {
+        if (columna == columna2) {
+            if (tablero[6][1] == tablero[fila][columna] || tablero[6][2] == tablero[fila][columna] || tablero[6][3] == tablero[fila][columna] || tablero[6][4] == tablero[fila][columna] || tablero[6][5] == tablero[fila][columna] || tablero[6][6] == tablero[fila][columna] || tablero[6][7] == tablero[fila][columna] || tablero[6][8] == tablero[fila][columna]) {
+                if (fila - fila2 == 1) {
+                    return true;
+                } else if (fila - fila2 == 2) {
+                    return true;
+                }
+            } else {
+                if (fila - fila2 == 1) {
+                    return true;
+                }
+            }
+        } else{
             return false;
         }
         return false;
@@ -456,9 +481,25 @@ public class prueba {
 
     private static boolean MovimientoTorre(int fila, int columna, int fila2, int columna2, String[][] tablero2) {
         if (fila == fila2) {
-
+            int inicio = Math.min(columna, columna2);
+            int fin = Math.max(columna, columna2);
+            for (int i = inicio + 1; i < fin; i++) {
+                if (tablero[fila][i] != BGB + "    " || tablero[fila][i] != BGN + "    ") {
+                    return false;
+                }
+            }
+        } else if (columna == columna2) {
+            int inicio = Math.min(fila, fila2);
+            int fin = Math.max(fila, fila2);
+            for (int i = inicio + 1; i < fin; i++) {
+                if (tablero[i][columna] != BGB + "    " || tablero[i][columna] != BGN + "    ") {
+                    return false;
+                }
+            }
+        } else {
+            return false;
         }
-        return false;
+        return true;
     }
 
     private static boolean ValidarRey(int fila, int columna, int columna2, int fila2) {
@@ -496,68 +537,6 @@ public class prueba {
 
         // Si todas las casillas en la diagonal están vacías, el movimiento es válido
         return true;
-    }
-
-    // TORRES Y PEONES
-    private static boolean ValidarTyP(String[][] tablero2, int fila, int columna, int columna2,
-            int fila2) {
-        int filacomp;
-        int columnacomp;
-        boolean continuar = false;
-        if (fila > fila2) {
-            filacomp = fila - fila2;
-            for (int i = 1; i <= filacomp; i++) {
-                if (tablero[fila - i][columna].equals(BGB + "    ")
-                        || tablero[fila - i][columna].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        } else {
-            filacomp = fila2 - fila;
-            for (int i = 1; i <= filacomp; i++) {
-                if (tablero[fila + i][columna].equals(BGB + "    ")
-                        || tablero[fila + i][columna].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        }
-        if (continuar == true) {
-            return true;
-        }
-        if (columna > columna2) {
-            columnacomp = columna - columna2;
-            for (int i = 1; i <= columnacomp; i++) {
-                if (tablero[fila][columna - i].equals(BGB + "    ")
-                        || tablero[fila][columna - i].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        } else {
-            columnacomp = columna2 - columna;
-            for (int i = 1; i <= columnacomp; i++) {
-                if (tablero[fila][columna + i].equals(BGB + "    ")
-                        || tablero[fila][columna + i].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        }
-        if (continuar == true) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private static boolean ValidarCaballo(int fila, int columna, int fila2, int columna2) {
