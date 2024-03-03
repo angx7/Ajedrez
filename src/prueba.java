@@ -251,31 +251,74 @@ public class prueba {
         String concatenarN1 = BGB + pieza;
         String concatenarN2 = BGN + pieza;
         if ((comp.equals(concatenarN1)) || (comp.equals(concatenarN2))) {
-            boolean Validartyp = ValidarTyPR(tablero, fila, columna, columna2, fila2);
-            if (pieza.equals(AlfilN)) {
-                if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
-                    return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                } else {
-                    System.out.println("El alfil no se puede mover a esa posición");
-                    return false;
-                }
+            switch (pieza) {
+                case " \u265D  ": // Alfil negro
+                    if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
+                        return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El alfil no se puede mover a esa posición");
+                        return false;
+                    }
+                case " \u265E  ": // Caballo negro
+                    if (ValidarCaballo(fila, columna, fila2, columna2)) {
+                        return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El caballo no se puede mover a esa posición");
+                        return false;
+                    }
+                case " \u265A  ": // Rey negro
+                    if (ValidarRey(fila, columna, columna2, fila2)) {
+                        return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("El rey no se puede mover a esa posición");
+                    }
+                case " \u265B  ": // Dama negro
+                    break;
+                default:
+                    if (pieza.equals(TorreN)) { // Torre y peón negros
+                        if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
+                            return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La torre no se puede mover a esa posición");
+                            return false;
+
+                        }
+                    } else if (pieza.equals(PeonN)) {
+                        if (MovimientoPeonN(fila, columna, fila2, columna2, tablero)) {
+                            return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("El peón no se puede mover a esa posición");
+                            return false;
+                        }
+                    }
             }
-            if (pieza.equals(CaballoN)) {
-                if (ValidarCaballo(fila2, columna2, fila, columna)) {
-                    return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                } else {
-                    System.out.println("El caballo no se puede mover a esa posición");
-                    return false;
-                }
-            }
-            if (Validartyp == true) {
-                return MoverPiezaR(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-            }
-            return false;
         } else {
             System.out.println("No puedes mover esta pieza");
             return false;
         }
+        return false;
+    }
+
+    private static boolean MovimientoPeonN(int fila, int columna, int fila2, int columna2, String[][] tablero2) {
+        if (columna == columna2) {
+            if (tablero[1][1] == tablero[fila][columna] || tablero[1][2] == tablero[fila][columna]
+                    || tablero[1][3] == tablero[fila][columna] || tablero[1][4] == tablero[fila][columna]
+                    || tablero[1][5] == tablero[fila][columna] || tablero[1][6] == tablero[fila][columna]
+                    || tablero[1][7] == tablero[fila][columna] || tablero[1][8] == tablero[fila][columna]) {
+                if (fila2 - fila == 1) {
+                    return true;
+                } else if (fila2 - fila == 2) {
+                    return true;
+                }
+            } else {
+                if (fila2 - fila == 1) {
+                    return true;
+                }
+            }
+        } else {
+            return false;
+        }
+        return false;
     }
 
     private static String bibliotecaR(String pieza2) {
@@ -435,9 +478,30 @@ public class prueba {
                         System.out.println("El rey no se puede mover a esa posición");
                     }
                 case " \u2655  ": // Dama blanca
-                    break;
+                    if (fila == fila2) {
+                        if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La Dama no se puede mover a esa posición");
+                            return false;
+                        }
+                    } else if (columna == columna2){
+                        if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La Dama no se puede mover a esa posición");
+                            return false;
+                        }
+                    } else{
+                        if(MovimientoAlfil(fila, columna, fila2, columna2, tablero)){
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La Dama no se puede mover a esa posición");
+                            return false;
+                        } 
+                    }
                 default:
-                    if (pieza.equals(TorreB)) {
+                    if (pieza.equals(TorreB)) { // Torre y peón blancos
                         if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
                             return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
                         } else {
@@ -462,7 +526,10 @@ public class prueba {
 
     private static boolean MovimientoPeonB(int fila, int columna, int fila2, int columna2, String[][] tablero2) {
         if (columna == columna2) {
-            if (tablero[6][1] == tablero[fila][columna] || tablero[6][2] == tablero[fila][columna] || tablero[6][3] == tablero[fila][columna] || tablero[6][4] == tablero[fila][columna] || tablero[6][5] == tablero[fila][columna] || tablero[6][6] == tablero[fila][columna] || tablero[6][7] == tablero[fila][columna] || tablero[6][8] == tablero[fila][columna]) {
+            if (tablero[6][1] == tablero[fila][columna] || tablero[6][2] == tablero[fila][columna]
+                    || tablero[6][3] == tablero[fila][columna] || tablero[6][4] == tablero[fila][columna]
+                    || tablero[6][5] == tablero[fila][columna] || tablero[6][6] == tablero[fila][columna]
+                    || tablero[6][7] == tablero[fila][columna] || tablero[6][8] == tablero[fila][columna]) {
                 if (fila - fila2 == 1) {
                     return true;
                 } else if (fila - fila2 == 2) {
@@ -473,28 +540,39 @@ public class prueba {
                     return true;
                 }
             }
-        } else{
+        } else {
             return false;
         }
         return false;
     }
 
     private static boolean MovimientoTorre(int fila, int columna, int fila2, int columna2, String[][] tablero2) {
+        boolean continuar = false;
         if (fila == fila2) {
             int inicio = Math.min(columna, columna2);
             int fin = Math.max(columna, columna2);
             for (int i = inicio + 1; i < fin; i++) {
-                if (tablero[fila][i] != BGB + "    " || tablero[fila][i] != BGN + "    ") {
+                if (tablero[fila][i].equals(BGB + "    ") || tablero[fila][i].equals(BGN + "    ")) {
+                    continuar = true;
+                } else {
                     return false;
                 }
+            }
+            if (continuar) {
+                return true;
             }
         } else if (columna == columna2) {
             int inicio = Math.min(fila, fila2);
             int fin = Math.max(fila, fila2);
             for (int i = inicio + 1; i < fin; i++) {
-                if (tablero[i][columna] != BGB + "    " || tablero[i][columna] != BGN + "    ") {
+                if (tablero[i][columna].equals(BGB + "    ") || tablero[i][columna].equals(BGN + "    ") ) {
+                    continuar = true;
+                } else {
                     return false;
                 }
+            }
+            if (continuar) {
+                return true;
             }
         } else {
             return false;
@@ -543,67 +621,6 @@ public class prueba {
         int difFil = Math.abs(fila - fila2);
         int difCol = Math.abs(columna - columna2);
         return (difFil == 2 && difCol == 1) || (difFil == 1 && difCol == 2);
-    }
-
-    private static boolean ValidarTyPR(String[][] tablero2, int fila, int columna, int columna2,
-            int fila2) {
-        int filacomp;
-        int columnacomp;
-        boolean continuar = false;
-        if (fila < fila2) {
-            filacomp = fila2 - fila;
-            for (int i = 1; i <= filacomp; i++) {
-                if (tablero[fila + i][columna].equals(BGB + "    ")
-                        || tablero[fila + i][columna].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        } else {
-            filacomp = fila - fila2;
-            for (int i = 1; i <= filacomp; i++) {
-                if (tablero[fila - i][columna].equals(BGB + "    ")
-                        || tablero[fila - i][columna].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        }
-        if (continuar == true) {
-            return true;
-        }
-        if (columna > columna2) {
-            columnacomp = columna - columna2;
-            for (int i = 1; i <= columnacomp; i++) {
-                if (tablero[fila][columna - i].equals(BGB + "    ")
-                        || tablero[fila][columna - i].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        } else {
-            columnacomp = columna2 - columna;
-            for (int i = 1; i <= columnacomp; i++) {
-                if (tablero[fila][columna + i].equals(BGB + "    ")
-                        || tablero[fila][columna + i].equals(BGN + "    ")) {
-                    continuar = true;
-                } else {
-                    System.out.println("No se puede mover a esa posición");
-                    return false;
-                }
-            }
-        }
-        if (continuar == true) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private static String bibliotecaB(String pieza2) {
