@@ -20,6 +20,7 @@ public class prueba {
     static String BGN = "\u001B[46m" + "\u001B[30m";
     static String BG = "\u001B[0m";
     static String[][] tablero = CrearTablero();
+    private static String defaultcolor = "\u001B[37m";
 
     // Método principal
     public static void main(String[] args) {
@@ -121,6 +122,18 @@ public class prueba {
                             opcion = Integer.parseInt(option);
                         }
                         if (opcion == 1) {
+                            limpiarConsola();
+                            System.out.println("\t\t\t\u001B[33mGracias por jugar\n" + defaultcolor);
+                            System.out.println("Presiona enter para continuar...");
+                            sc.nextLine();
+                            limpiarConsola();
+                            System.out.println(
+                                    "\t\t\t\t\u001B[33mCréditos\n\n" + defaultcolor
+                                            + "* Angel Alejandro Becerra Rojas\r\n* Christian Axel Moreno Flores\r\n* Andrés Aguilera Hernández");
+                            System.out.println("\n\n Presiona enter para continuar...");
+                            sc.nextLine();
+                            limpiarConsola();
+                            sc.close();
                             System.exit(0);
                         } else {
                             TBlancas = true;
@@ -185,6 +198,18 @@ public class prueba {
                             opcion = Integer.parseInt(option);
                         }
                         if (opcion == 1) {
+                            limpiarConsola();
+                            System.out.println("\t\t\t\u001B[33mGracias por jugar\n" + defaultcolor);
+                            System.out.println("Presiona enter para continuar...");
+                            sc.nextLine();
+                            limpiarConsola();
+                            System.out.println(
+                                    "\t\t\t\t\u001B[33mCréditos\n\n" + defaultcolor
+                                            + "* Angel Alejandro Becerra Rojas\r\n* Christian Axel Moreno Flores\r\n* Andrés Aguilera Hernández");
+                            System.out.println("\n\n Presiona enter para continuar...");
+                            sc.nextLine();
+                            limpiarConsola();
+                            sc.close();
                             System.exit(0);
                         } else {
                             TNegras = false;
@@ -273,28 +298,28 @@ public class prueba {
                         System.out.println("El rey no se puede mover a esa posición");
                     }
                 case " \u265B  ": // Dama negra
-                if (fila == fila2) {
-                    if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
-                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    if (fila == fila2) {
+                        if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La Dama no se puede mover a esa posición");
+                            return false;
+                        }
+                    } else if (columna == columna2) {
+                        if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La Dama no se puede mover a esa posición");
+                            return false;
+                        }
                     } else {
-                        System.out.println("La Dama no se puede mover a esa posición");
-                        return false;
+                        if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
+                            return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                        } else {
+                            System.out.println("La Dama no se puede mover a esa posición");
+                            return false;
+                        }
                     }
-                } else if (columna == columna2){
-                    if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
-                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                    } else {
-                        System.out.println("La Dama no se puede mover a esa posición");
-                        return false;
-                    }
-                } else{
-                    if(MovimientoAlfil(fila, columna, fila2, columna2, tablero)){
-                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
-                    } else {
-                        System.out.println("La Dama no se puede mover a esa posición");
-                        return false;
-                    } 
-                }
                 default:
                     if (pieza.equals(TorreN)) { // Torre y peón negros
                         if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
@@ -500,26 +525,26 @@ public class prueba {
                     }
                 case " \u2655  ": // Dama blanca
                     if (fila == fila2) {
-                        if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
+                        if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
                             return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
                         } else {
                             System.out.println("La Dama no se puede mover a esa posición");
                             return false;
                         }
-                    } else if (columna == columna2){
-                        if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
+                    } else if (columna == columna2) {
+                        if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
                             return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
                         } else {
                             System.out.println("La Dama no se puede mover a esa posición");
                             return false;
                         }
-                    } else{
-                        if(MovimientoAlfil(fila, columna, fila2, columna2, tablero)){
+                    } else {
+                        if (MovimientoAlfil(fila, columna, fila2, columna2, tablero)) {
                             return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
                         } else {
                             System.out.println("La Dama no se puede mover a esa posición");
                             return false;
-                        } 
+                        }
                     }
                 default:
                     if (pieza.equals(TorreB)) { // Torre y peón blancos
@@ -586,7 +611,7 @@ public class prueba {
             int inicio = Math.min(fila, fila2);
             int fin = Math.max(fila, fila2);
             for (int i = inicio + 1; i < fin; i++) {
-                if (tablero[i][columna].equals(BGB + "    ") || tablero[i][columna].equals(BGN + "    ") ) {
+                if (tablero[i][columna].equals(BGB + "    ") || tablero[i][columna].equals(BGN + "    ")) {
                     continuar = true;
                 } else {
                     return false;
@@ -785,7 +810,8 @@ public class prueba {
         }
 
         System.out.println(
-                "\n P = \u2659 (Peón) \t T = \u2656 (Torre) \t C = \u2658 (Caballo) \n A = \u2657 (Alfil) \t D = \u2655 (Dama) \t R = \u2654 (Rey) \n");
+                "\n \u001B[33mP = \u2659 (Peón) \t T = \u2656 (Torre) \t C = \u2658 (Caballo) \n A = \u2657 (Alfil) \t D = \u2655 (Dama) \t R = \u2654 (Rey) \n"
+                        + defaultcolor);
     }
 
     private static String[][] CrearTablero() {
