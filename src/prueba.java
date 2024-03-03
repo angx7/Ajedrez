@@ -272,8 +272,29 @@ public class prueba {
                     } else {
                         System.out.println("El rey no se puede mover a esa posición");
                     }
-                case " \u265B  ": // Dama negro
-                    break;
+                case " \u265B  ": // Dama negra
+                if (fila == fila2) {
+                    if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("La Dama no se puede mover a esa posición");
+                        return false;
+                    }
+                } else if (columna == columna2){
+                    if(MovimientoTorre(fila, columna, fila2, columna2, tablero)){
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("La Dama no se puede mover a esa posición");
+                        return false;
+                    }
+                } else{
+                    if(MovimientoAlfil(fila, columna, fila2, columna2, tablero)){
+                        return MoverPieza(tablero, fila, columna, fila2, columna2, pieza, turnoBlancas, pz);
+                    } else {
+                        System.out.println("La Dama no se puede mover a esa posición");
+                        return false;
+                    } 
+                }
                 default:
                     if (pieza.equals(TorreN)) { // Torre y peón negros
                         if (MovimientoTorre(fila, columna, fila2, columna2, tablero)) {
