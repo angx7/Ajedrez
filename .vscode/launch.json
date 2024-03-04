@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Ajedrez",
+            "request": "launch",
+            "mainClass": "Ajedrez",
+            "projectName": "Ajedrez_8477c99"
+        },
+        {
+            "type": "java",
             "name": "prueba",
             "request": "launch",
             "mainClass": "prueba",

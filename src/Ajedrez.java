@@ -32,10 +32,10 @@ public class Ajedrez {
     // Métodos de comprobación
     // Método para validar que el usuario ingresó numeros enteros
     public static boolean validarNumeros(String numero) {
-        int num;
+        int FLDSMDFR;
         try {
-            num = Integer.parseInt(numero);
-            if (num < 1 || num > 8) {
+            FLDSMDFR = Integer.parseInt(numero);
+            if (FLDSMDFR < 1 || FLDSMDFR > 8) {
                 return false;
             }
             return true;
